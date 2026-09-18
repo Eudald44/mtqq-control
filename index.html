@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MTQQ Control</title>
+
+<style>
+*{box-sizing:border-box}
+:root{
+ --bg:#f4f6f8;--panel:#fff;--dark:#111827;--dark2:#1f2937;
+ --text:#1f2937;--muted:#6b7280;--border:#e5e7eb;--blue:#2563eb;
+ --red:#dc2626;--orange:#d97706;--green:#059669;--purple:#7c3aed;
+}
+body{
+ margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ background:var(--bg);color:var(--text)
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+
+/* SIDEBAR */
+.sidebar{
+ position:fixed;left:0;top:0;width:240px;height:100vh;background:var(--dark);
+ color:white;padding:28px 20px;overflow-y:auto
+}
+.logo{font-size:21px;font-weight:800;margin-bottom:35px}
+.section-title{
+ font-size:11px;color:#6b7280;margin:28px 0 8px;font-weight:700;letter-spacing:1px
+}
+.menu-item{
+ padding:10px 12px;border-radius:7px;margin:3px 0;cursor:pointer;color:#d1d5db
+}
+.menu-item:hover,.menu-item.active{background:var(--dark2);color:white}
+.new-task{
+ margin-top:30px;background:var(--blue);padding:11px;border-radius:8px;
+ text-align:center;cursor:pointer;font-weight:700
+}
+
+/* MAIN */
+.main{margin-left:240px;padding:40px;max-width:1600px}
+.header{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.header h1{margin:0;font-size:30px}
+.header p{color:var(--muted);margin:6px 0 0}
+.header-actions{display:flex;gap:8px}
+
+/* BOTONES */
+.btn{
+ border:1px solid #d1d5db;background:white;color:#374151;padding:9px 13px;
+ border-radius:8px;font-weight:600
+}
+.btn:hover{background:#f9fafb}
+.btn-primary{background:var(--blue);color:white;border-color:var(--blue)}
+.btn-primary:hover{background:#1d4ed8}
+.btn-danger{background:#fff1f2;color:#be123c;border-color:#fecdd3}
+.btn-success{background:#ecfdf5;color:#047857;border-color:#a7f3d0}
+.btn-small{padding:7px 10px;font-size:13px}
+
+/* CARDS */
+.cards{
+ display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:30px
+}
+.card{
+ background:white;border-radius:12px;padding:22px;box-shadow:0 1px 3px rgba(0,0,0,.08)
+}
+.card.clickable{cursor:pointer}
+.card.clickable:hover{box-shadow:0 4px 12px rgba(0,0,0,.10)}
+.number{font-size:30px;font-weight:800}
+.label{margin-top:5px;color:var(--muted)}
+
+/* PANELS */
+.panel{
+ background:white;margin-top:25px;padding:24px;border-radius:12px;
+ box-shadow:0 1px 3px rgba(0,0,0,.08)
+}
+.panel-header{
+ display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:15px
+}
+.panel h2{margin:0;font-size:18px}
+.empty{
+ padding:35px;text-align:center;color:#9ca3af;border:1px dashed #d1d5db;border-radius:8px
+}
+
+/* ALERTAS */
+.alert-grid{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:25px
+}
+.alert-card{background:white;border-radius:12px;padding:18px;border-left:4px solid #d1d5db}
+.alert-card.red{border-left-color:#ef4444}
+.alert-card.orange{border-left-color:#f59e0b}
+.alert-card.purple{border-left-color:#8b5cf6}
+.alert-number{font-size:24px;font-weight:800}
+.alert-label{font-size:13px;color:var(--muted);margin-top:3px}
+
+/* LOCALES */
+.locations{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.location{
+ border:1px solid var(--border);padding:18px;border-radius:10px;cursor:pointer;transition:.15s
+}
+.location:hover{border-color:var(--blue);transform:translateY(-2px)}
+.location strong{display:block;margin-bottom:8px}
+.location span{font-size:13px;color:var(--muted)}
+
+/* SALAS */
+.rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.room{
+ background:white;border:1px solid var(--border);border-radius:11px;padding:20px;
+ cursor:pointer;transition:.15s
+}
+.room:hover{border-color:var(--blue);transform:translateY(-1px)}
+.room-header{display:flex;justify-content:space-between;align-items:center}
+.room-name{font-weight:700;font-size:15px}
+.room-status{width:11px;height:11px;border-radius:50%}
+.status-green{background:#22c55e}
+.status-orange{background:#f59e0b}
+.status-red{background:#ef4444}
+.room-info{color:var(--muted);font-size:13px;margin-top:12px}
+
+/* TAREAS */
+.task{
+ display:flex;justify-content:space-between;align-items:center;gap:15px;
+ padding:15px 4px;border-bottom:1px solid var(--border)
+}
+.task:last-child{border-bottom:none}
+.task-main{cursor:pointer;flex:1}
+.task-main:hover .task-title{text-decoration:underline}
+.task-title{font-weight:650}
+.task-info{font-size:13px;color:var(--muted);margin-top:6px}
+.task-actions{display:flex;gap:7px;flex-shrink:0}
+.badge{
+ display:inline-block;font-size:10px;font-weight:800;padding:4px 8px;
+ border-radius:20px;margin-right:5px;vertical-align:middle
+}
+.badge-averia{background:#fee2e2;color:#991b1b}
+.badge-revisar{background:#fef3c7;color:#92400e}
+.badge-compra{background:#dbeafe;color:#1e40af}
+.badge-tarea{background:#e5e7eb;color:#374151}
+.badge-mejora{background:#dcfce7;color:#166534}
+.priority-urgente{background:#fee2e2;color:#b91c1c}
+.priority-importante{background:#ffedd5;color:#c2410c}
+.priority-normal{background:#f3f4f6;color:#6b7280}
+.state-proceso{background:#dbeafe;color:#1d4ed8}
+.state-bloqueada{background:#ede9fe;color:#6d28d9}
+.state-resuelto{background:#dcfce7;color:#047857}
+.overdue{color:#dc2626;font-weight:700}
+
+/* FILTROS */
+.filters{
+ display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:20px
+}
+.filters input,.filters select{
+ width:100%;padding:9px;border:1px solid #d1d5db;border-radius:7px;background:white
+}
+
+/* FORM */
+.modal{
+ display:none;position:fixed;z-index:100;left:0;top:0;width:100%;height:100%;
+ background:rgba(0,0,0,.45);align-items:center;justify-content:center;padding:20px
+}
+.modal-content{
+ background:white;width:620px;max-width:100%;max-height:92vh;overflow-y:auto;
+ border-radius:14px;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,.2)
+}
+.modal-large{width:760px}
+.modal-header{display:flex;justify-content:space-between;align-items:center;gap:20px}
+.modal-header h2{margin:0}
+.close{font-size:26px;cursor:pointer;color:var(--muted)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:22px}
+.form-full{grid-column:1/-1}
+label{
+ display:block;font-size:11px;font-weight:800;margin-bottom:6px;color:#4b5563;letter-spacing:.4px
+}
+input,select,textarea{
+ width:100%;padding:10px;border:1px solid #d1d5db;border-radius:7px;background:white
+}
+textarea{min-height:90px;resize:vertical}
+.form-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:22px}
+
+/* DETALLE */
+.detail-grid{
+ display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin-top:22px
+}
+.detail-box{background:#f9fafb;padding:14px;border-radius:9px}
+.detail-label{font-size:11px;font-weight:800;color:var(--muted);margin-bottom:5px}
+.detail-value{font-size:14px}
+.notes-box{
+ margin-top:15px;background:#f9fafb;padding:15px;border-radius:9px;
+ white-space:pre-wrap;font-size:14px;line-height:1.5
+}
+
+/* HISTORIAL */
+.history-date{font-size:12px;color:var(--muted)}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+ .cards,.locations{grid-template-columns:repeat(2,1fr)}
+ .rooms{grid-template-columns:repeat(2,1fr)}
+ .filters{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+ <div class="logo">MTQQ CONTROL</div>
+
+ <div class="menu-item active" id="menuDashboard" onclick="mostrarDashboard()">⌂ Dashboard</div>
+
+ <div class="section-title">ELEMENTS</div>
+ <div class="menu-item" id="menuOperaciones" onclick="mostrarOperaciones()">▣ Operaciones</div>
+ <div class="menu-item" id="menuTerrassa" onclick="mostrarLocal('Terrassa')">Terrassa</div>
+ <div class="menu-item" id="menuSabadell" onclick="mostrarLocal('Sabadell')">Sabadell</div>
+ <div class="menu-item" id="menuBarcelona" onclick="mostrarLocal('Barcelona')">Barcelona</div>
+ <div class="menu-item" id="menuEsplugues" onclick="mostrarLocal('Esplugues')">Esplugues</div>
+
+ <div class="section-title">ORGANIZACIÓN</div>
+ <div class="menu-item" id="menuMisTareas" onclick="mostrarMisTareas()">✓ Mis tareas</div>
+ <div class="menu-item" id="menuHistorial" onclick="mostrarHistorial()">↻ Historial</div>
+ <div class="menu-item" id="menuProyectos" onclick="mostrarProyectos()">▤ Proyectos</div>
+
+ <div class="new-task" onclick="abrirNuevaTarea()">+ Nueva tarea</div>
+</div>
+
+<div class="main" id="mainContent"></div>
+
+<!-- MODAL CREAR / EDITAR -->
+<div class="modal" id="taskModal">
+ <div class="modal-content">
+  <div class="modal-header">
+   <h2 id="formTitle">Nueva tarea</h2>
+   <div class="close" onclick="cerrarModal('taskModal')">×</div>
+  </div>
+
+  <input type="hidden" id="editId">
+
+  <div class="form-grid">
+
+   <div>
+    <label>TIPO</label>
+    <select id="tipo">
+     <option value="averia">Avería</option>
+     <option value="revisar">Revisar</option>
+     <option value="compra">Compra</option>
+     <option value="tarea">Tarea</option>
+     <option value="mejora">Mejora</option>
+    </select>
+   </div>
+
+   <div>
+    <label>PRIORIDAD</label>
+    <select id="prioridad">
+     <option value="normal">Normal</option>
+     <option value="importante">Importante</option>
+     <option value="urgente">Urgente</option>
+    </select>
+   </div>
+
+   <div>
+    <label>LOCAL</label>
+    <select id="local" onchange="actualizarSalas()">
+     <option value="">Seleccionar...</option>
+     <option>Terrassa</option>
+     <option>Sabadell</option>
+     <option>Barcelona</option>
+     <option>Esplugues</option>
+    </select>
+   </div>
+
+   <div>
+    <label>SALA</label>
+    <select id="sala">
+     <option value="">Selecciona primero el local</option>
+    </select>
+   </div>
+
+   <div class="form-full">
+    <label>TÍTULO</label>
+    <input id="titulo" placeholder="Ej: Sensor puerta final no funciona">
+   </div>
+
+   <div>
+    <label>RESPONSABLE</label>
+    <input id="responsable" placeholder="Ej: Eudald, encargado, proveedor...">
+   </div>
+
+   <div>
+    <label>FECHA LÍMITE</label>
+    <input id="fecha" type="date">
+   </div>
+
+   <div>
+    <label>ESTADO</label>
+    <select id="estado" onchange="mostrarCampoBloqueo()">
+     <option value="pendiente">Pendiente</option>
+     <option value="proceso">En proceso</option>
+     <option value="bloqueada">Bloqueada</option>
+     <option value="resuelto">Resuelta</option>
+    </select>
+   </div>
+
+   <div id="bloqueoWrap" style="display:none">
+    <label>BLOQUEADA POR</label>
+    <select id="bloqueo">
+     <option value="">Seleccionar...</option>
+     <option value="Socio">Esperando socio / decisión</option>
+     <option value="Material">Esperando material</option>
+     <option value="Proveedor">Esperando proveedor</option>
+     <option value="Presupuesto">Esperando presupuesto</option>
+     <option value="Otro">Otro</option>
+    </select>
+   </div>
+
+   <div class="form-full">
+    <label>NOTAS</label>
+    <textarea id="notas" placeholder="Qué ocurre, qué se ha probado, información útil..."></textarea>
+   </div>
+
+  </div>
+
+  <div class="form-actions">
+   <button class="btn" onclick="cerrarModal('taskModal')">Cancelar</button>
+   <button class="btn btn-primary" onclick="guardarTarea()">Guardar</button>
+  </div>
+ </div>
+</div>
+
+<!-- MODAL DETALLE -->
+<div class="modal" id="detailModal">
+ <div class="modal-content modal-large" id="detailContent"></div>
+</div>
+
+<script>
+
+/* =====================================================
+   CONFIGURACIÓN
+===================================================== */
+
+const salas = {
+ "Terrassa":[
+  "La Taberna","Academia de Cocina","TV Show","Realidad Virtual",
+  "La Lanzadera","El Castillo","Código Rojo"
+ ],
+ "Sabadell":[
+  "Expedición Cero","Bajo Cero","El Perfume",
+  "Atrincherados","Vikingos","Reina Roja"
+ ],
+ "Barcelona":["El Faraón","Atlantis","Exodus","Mutant"],
+ "Esplugues":["Kemet","Katrina"]
+};
+
+let tareas = JSON.parse(localStorage.getItem("mtqq_tareas")) || [];
+
+/* Compatibilidad con tareas creadas en versiones anteriores */
+tareas = tareas.map(t => ({
+ prioridad:"normal",
+ bloqueo:"",
+ resuelta:null,
+ ...t
+}));
+
+let vistaActual="dashboard";
+let localActual=null;
+let salaActual=null;
+
+/* =====================================================
+   UTILIDADES
+===================================================== */
+
+function guardarDatos(){
+ localStorage.setItem("mtqq_tareas",JSON.stringify(tareas));
+}
+
+function escaparHTML(texto){
+ if(texto===null || texto===undefined)return "";
+ return String(texto)
+  .replaceAll("&","&amp;")
+  .replaceAll("<","&lt;")
+  .replaceAll(">","&gt;")
+  .replaceAll('"',"&quot;")
+  .replaceAll("'","&#039;");
+}
+
+function formatearFecha(fecha){
+ if(!fecha)return "—";
+ const p=fecha.substring(0,10).split("-");
+ if(p.length!==3)return fecha;
+ return `${p[2]}/${p[1]}/${p[0]}`;
+}
+
+function hoyISO(){
+ const d=new Date();
+ const y=d.getFullYear();
+ const m=String(d.getMonth()+1).padStart(2,"0");
+ const day=String(d.getDate()).padStart(2,"0");
+ return `${y}-${m}-${day}`;
+}
+
+function estaVencida(t){
+ return t.estado!=="resuelto" && t.fecha && t.fecha<hoyISO();
+}
+
+function nombreTipo(tipo){
+ return {
+  averia:"AVERÍA",revisar:"REVISAR",compra:"COMPRA",
+  tarea:"TAREA",mejora:"MEJORA"
+ }[tipo] || tipo;
+}
+
+function nombreEstado(estado){
+ return {
+  pendiente:"Pendiente",proceso:"En proceso",
+  bloqueada:"Bloqueada",resuelto:"Resuelta"
+ }[estado] || estado;
+}
+
+function nombrePrioridad(p){
+ return {
+  normal:"Normal",importante:"Importante",urgente:"Urgente"
+ }[p] || "Normal";
+}
+
+function activas(){
+ return tareas.filter(t=>t.estado!=="resuelto");
+}
+
+function actualizarMenuActivo(id){
+ document.querySelectorAll(".menu-item").forEach(x=>x.classList.remove("active"));
+ const el=document.getElementById(id);
+ if(el)el.classList.add("active");
+}
+
+/* =====================================================
+   FORMULARIO
+===================================================== */
+
+function abrirNuevaTarea(local=null,sala=null){
+ document.getElementById("formTitle").textContent="Nueva tarea";
+ document.getElementById("editId").value="";
+ limpiarFormulario();
+
+ if(local){
+  document.getElementById("local").value=local;
+  actualizarSalas();
+ }
+ if(sala)document.getElementById("sala").value=sala;
+
+ document.getElementById("taskModal").style.display="flex";
+}
+
+function editarTarea(id){
+ const t=tareas.find(x=>x.id===id);
+ if(!t)return;
+
+ cerrarModal("detailModal");
+
+ document.getElementById("formTitle").textContent="Editar tarea";
+ document.getElementById("editId").value=t.id;
+ document.getElementById("tipo").value=t.tipo;
+ document.getElementById("prioridad").value=t.prioridad || "normal";
+ document.getElementById("local").value=t.local;
+ actualizarSalas();
+ document.getElementById("sala").value=t.sala || "";
+ document.getElementById("titulo").value=t.titulo || "";
+ document.getElementById("responsable").value=t.responsable || "";
+ document.getElementById("fecha").value=t.fecha || "";
+ document.getElementById("estado").value=t.estado || "pendiente";
+ document.getElementById("bloqueo").value=t.bloqueo || "";
+ document.getElementById("notas").value=t.notas || "";
+ mostrarCampoBloqueo();
+
+ document.getElementById("taskModal").style.display="flex";
+}
+
+function limpiarFormulario(){
+ document.getElementById("tipo").value="averia";
+ document.getElementById("prioridad").value="normal";
+ document.getElementById("local").value="";
+ document.getElementById("sala").innerHTML='<option value="">Selecciona primero el local</option>';
+ document.getElementById("titulo").value="";
+ document.getElementById("responsable").value="";
+ document.getElementById("fecha").value="";
+ document.getElementById("estado").value="pendiente";
+ document.getElementById("bloqueo").value="";
+ document.getElementById("notas").value="";
+ mostrarCampoBloqueo();
+}
+
+function actualizarSalas(){
+ const local=document.getElementById("local").value;
+ const sel=document.getElementById("sala");
+ sel.innerHTML="";
+
+ if(!local){
+  sel.innerHTML='<option value="">Selecciona primero el local</option>';
+  return;
+ }
+
+ salas[local].forEach(s=>{
+  const o=document.createElement("option");
+  o.value=s;o.textContent=s;sel.appendChild(o);
+ });
+}
+
+function mostrarCampoBloqueo(){
+ const estado=document.getElementById("estado").value;
+ document.getElementById("bloqueoWrap").style.display=
+  estado==="bloqueada" ? "block":"none";
+}
+
+function guardarTarea(){
+ const titulo=document.getElementById("titulo").value.trim();
+ const local=document.getElementById("local").value;
+
+ if(!titulo){alert("Escribe un título.");return;}
+ if(!local){alert("Selecciona un local.");return;}
+
+ const editId=document.getElementById("editId").value;
+ const estado=document.getElementById("estado").value;
+
+ const datos={
+  tipo:document.getElementById("tipo").value,
+  prioridad:document.getElementById("prioridad").value,
+  local,
+  sala:document.getElementById("sala").value,
+  titulo,
+  responsable:document.getElementById("responsable").value.trim(),
+  fecha:document.getElementById("fecha").value,
+  estado,
+  bloqueo:estado==="bloqueada" ? document.getElementById("bloqueo").value : "",
+  notas:document.getElementById("notas").value
+ };
+
+ if(editId){
+  const t=tareas.find(x=>String(x.id)===String(editId));
+  if(t){
+   const antesResuelta=t.estado==="resuelto";
+   Object.assign(t,datos);
+
+   if(estado==="resuelto" && !antesResuelta){
+    t.resuelta=new Date().toISOString();
+   }
+   if(estado!=="resuelto")t.resuelta=null;
+  }
+ }else{
+  tareas.push({
+   id:Date.now(),
+   ...datos,
+   creada:new Date().toISOString(),
+   resuelta:estado==="resuelto" ? new Date().toISOString() : null
+  });
+ }
+
+ guardarDatos();
+ cerrarModal("taskModal");
+ renderVistaActual();
+}
+
+function resolverTarea(id){
+ const t=tareas.find(x=>x.id===id);
+ if(!t)return;
+
+ t.estado="resuelto";
+ t.bloqueo="";
+ t.resuelta=new Date().toISOString();
+ guardarDatos();
+ renderVistaActual();
+}
+
+function reabrirTarea(id){
+ const t=tareas.find(x=>x.id===id);
+ if(!t)return;
+ t.estado="pendiente";
+ t.resuelta=null;
+ guardarDatos();
+ cerrarModal("detailModal");
+ renderVistaActual();
+}
+
+function cerrarModal(id){
+ document.getElementById(id).style.display="none";
+}
+
+/* =====================================================
+   DETALLE TAREA
+===================================================== */
+
+function verTarea(id){
+ const t=tareas.find(x=>x.id===id);
+ if(!t)return;
+
+ const vencida=estaVencida(t);
+
+ document.getElementById("detailContent").innerHTML=`
+  <div class="modal-header">
+   <div>
+    <span class="badge badge-${t.tipo}">${nombreTipo(t.tipo)}</span>
+    <span class="badge priority-${t.prioridad}">${nombrePrioridad(t.prioridad)}</span>
+    ${t.estado!=="pendiente" ?
+     `<span class="badge state-${t.estado}">${nombreEstado(t.estado)}</span>`:""}
+   </div>
+   <div class="close" onclick="cerrarModal('detailModal')">×</div>
+  </div>
+
+  <h2 style="margin:18px 0 0">${escaparHTML(t.titulo)}</h2>
+
+  <div class="detail-grid">
+   <div class="detail-box">
+    <div class="detail-label">UBICACIÓN</div>
+    <div class="detail-value">${escaparHTML(t.local)} · ${escaparHTML(t.sala || "Sin sala")}</div>
+   </div>
+
+   <div class="detail-box">
+    <div class="detail-label">RESPONSABLE</div>
+    <div class="detail-value">${escaparHTML(t.responsable || "Sin asignar")}</div>
+   </div>
+
+   <div class="detail-box">
+    <div class="detail-label">FECHA LÍMITE</div>
+    <div class="detail-value ${vencida?"overdue":""}">
+     ${formatearFecha(t.fecha)} ${vencida?" · VENCIDA":""}
+    </div>
+   </div>
+
+   <div class="detail-box">
+    <div class="detail-label">ESTADO</div>
+    <div class="detail-value">
+     ${nombreEstado(t.estado)}
+     ${t.estado==="bloqueada" && t.bloqueo ? " · "+escaparHTML(t.bloqueo):""}
+    </div>
+   </div>
+
+   <div class="detail-box">
+    <div class="detail-label">CREADA</div>
+    <div class="detail-value">${formatearFecha(t.creada)}</div>
+   </div>
+
+   <div class="detail-box">
+    <div class="detail-label">RESUELTA</div>
+    <div class="detail-value">${t.resuelta ? formatearFecha(t.resuelta):"—"}</div>
+   </div>
+  </div>
+
+  <div class="detail-label" style="margin-top:20px">NOTAS</div>
+  <div class="notes-box">${escaparHTML(t.notas || "Sin notas")}</div>
+
+  <div class="form-actions">
+   ${t.estado==="resuelto"
+    ? `<button class="btn" onclick="reabrirTarea(${t.id})">↻ Reabrir</button>`
+    : `<button class="btn btn-success" onclick="resolverDesdeDetalle(${t.id})">✓ Resolver</button>`
+   }
+   <button class="btn btn-primary" onclick="editarTarea(${t.id})">Editar</button>
+  </div>
+ `;
+
+ document.getElementById("detailModal").style.display="flex";
+}
+
+function resolverDesdeDetalle(id){
+ cerrarModal("detailModal");
+ resolverTarea(id);
+}
+
+/* =====================================================
+   COMPONENTES DE TAREAS
+===================================================== */
+
+function renderListaTareas(lista,id){
+ const cont=document.getElementById(id);
+ if(!cont)return;
+
+ if(lista.length===0){
+  cont.innerHTML='<div class="empty">No hay tareas aquí.</div>';
+  return;
+ }
+
+ cont.innerHTML=lista.map(t=>{
+  let info=`${escaparHTML(t.local)} · ${escaparHTML(t.sala || "Sin sala")}`;
+
+  if(t.responsable)info+=` · ${escaparHTML(t.responsable)}`;
+  if(t.fecha){
+   info+=` · <span class="${estaVencida(t)?"overdue":""}">
+   ${formatearFecha(t.fecha)}${estaVencida(t)?" · VENCIDA":""}</span>`;
+  }
+
+  return `
+   <div class="task">
+    <div class="task-main" onclick="verTarea(${t.id})">
+     <div>
+      <span class="badge badge-${t.tipo}">${nombreTipo(t.tipo)}</span>
+      ${t.prioridad!=="normal"
+       ? `<span class="badge priority-${t.prioridad}">${nombrePrioridad(t.prioridad)}</span>`:""}
+      ${t.estado==="bloqueada"
+       ? `<span class="badge state-bloqueada">BLOQUEADA</span>`:""}
+      ${t.estado==="proceso"
+       ? `<span class="badge state-proceso">EN PROCESO</span>`:""}
+      <span class="task-title">${escaparHTML(t.titulo)}</span>
+     </div>
+     <div class="task-info">${info}</div>
+    </div>
+
+    <div class="task-actions">
+     ${t.estado!=="resuelto"
+      ? `<button class="btn btn-small btn-success" onclick="event.stopPropagation();resolverTarea(${t.id})">✓</button>`:""}
+    </div>
+   </div>
+  `;
+ }).join("");
+}
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function mostrarDashboard(){
+ vistaActual="dashboard";localActual=null;salaActual=null;
+ actualizarMenuActivo("menuDashboard");
+
+ const a=activas();
+ const urgentes=a.filter(t=>t.prioridad==="urgente");
+ const vencidas=a.filter(estaVencida);
+ const bloqueadas=a.filter(t=>t.estado==="bloqueada");
+ const averias=a.filter(t=>t.tipo==="averia");
+ const revisar=a.filter(t=>t.tipo==="revisar");
+ const compras=a.filter(t=>t.tipo==="compra");
+
+ document.getElementById("mainContent").innerHTML=`
+  <div class="header">
+   <div>
+    <h1>Dashboard</h1>
+    <p>Centro de operaciones · MTQQ Control</p>
+   </div>
+   <button class="btn btn-primary" onclick="abrirNuevaTarea()">+ Nueva tarea</button>
+  </div>
+
+  <div class="cards">
+   <div class="card clickable" onclick="mostrarOperaciones()">
+    <div class="number">${a.length}</div><div class="label">Pendientes</div>
+   </div>
+   <div class="card"><div class="number">${averias.length}</div><div class="label">Averías</div></div>
+   <div class="card"><div class="number">${revisar.length}</div><div class="label">Revisar</div></div>
+   <div class="card"><div class="number">${compras.length}</div><div class="label">Compras</div></div>
+  </div>
+
+  <div class="alert-grid">
+   <div class="alert-card red">
+    <div class="alert-number">${urgentes.length}</div>
+    <div class="alert-label">Urgentes</div>
+   </div>
+   <div class="alert-card orange">
+    <div class="alert-number">${vencidas.length}</div>
+    <div class="alert-label">Fuera de plazo</div>
+   </div>
+   <div class="alert-card purple">
+    <div class="alert-number">${bloqueadas.length}</div>
+    <div class="alert-label">Bloqueadas / esperando</div>
+   </div>
+  </div>
+
+  <div class="panel">
+   <div class="panel-header"><h2>Necesita mi atención</h2></div>
+   <div id="attentionList"></div>
+  </div>
+
+  <div class="panel">
+   <div class="panel-header"><h2>Estado de locales</h2></div>
+   <div class="locations">
+    ${["Terrassa","Sabadell","Barcelona","Esplugues"].map(crearTarjetaLocal).join("")}
+   </div>
+  </div>
+ `;
+
+ const atencion=[...a].sort((x,y)=>{
+  const score=t=>{
+   let s=0;
+   if(t.prioridad==="urgente")s+=100;
+   if(estaVencida(t))s+=80;
+   if(t.estado==="bloqueada")s+=50;
+   if(t.prioridad==="importante")s+=30;
+   return s;
+  };
+  return score(y)-score(x);
+ }).slice(0,10);
+
+ renderListaTareas(atencion,"attentionList");
+}
+
+function crearTarjetaLocal(local){
+ const a=activas().filter(t=>t.local===local);
+ const av=a.filter(t=>t.tipo==="averia").length;
+ const ur=a.filter(t=>t.prioridad==="urgente").length;
+
+ let texto=a.length===0?"Todo correcto":`${a.length} pendiente${a.length!==1?"s":""}`;
+ if(av)texto+=` · ${av} avería${av!==1?"s":""}`;
+ if(ur)texto+=` · ${ur} urgente${ur!==1?"s":""}`;
+
+ return `
+  <div class="location" onclick="mostrarLocal('${local}')">
+   <strong>${local}</strong>
+   <span>${salas[local].length} salas · ${texto}</span>
+  </div>`;
+}
+
+/* =====================================================
+   OPERACIONES
+===================================================== */
+
+function mostrarOperaciones(){
+ vistaActual="operaciones";localActual=null;salaActual=null;
+ actualizarMenuActivo("menuOperaciones");
+
+ document.getElementById("mainContent").innerHTML=`
+  <div class="header">
+   <div><h1>Operaciones</h1><p>Todas las tareas activas de Elements</p></div>
+   <button class="btn btn-primary" onclick="abrirNuevaTarea()">+ Nueva tarea</button>
+  </div>
+
+  <div class="panel">
+   <div class="filters">
+    <input id="fBuscar" placeholder="Buscar..." oninput="aplicarFiltros()">
+    <select id="fLocal" onchange="aplicarFiltros()">
+     <option value="">Todos los locales</option>
+     <option>Terrassa</option><option>Sabadell</option>
+     <option>Barcelona</option><option>Esplugues</option>
+    </select>
+    <select id="fTipo" onchange="aplicarFiltros()">
+     <option value="">Todos los tipos</option>
+     <option value="averia">Averías</option>
+     <option value="revisar">Revisar</option>
+     <option value="compra">Compras</option>
+     <option value="tarea">Tareas</option>
+     <option value="mejora">Mejoras</option>
+    </select>
+    <select id="fPrioridad" onchange="aplicarFiltros()">
+     <option value="">Toda prioridad</option>
+     <option value="urgente">Urgente</option>
+     <option value="importante">Importante</option>
+     <option value="normal">Normal</option>
+    </select>
+    <select id="fEstado" onchange="aplicarFiltros()">
+     <option value="">Todo estado</option>
+     <option value="pendiente">Pendiente</option>
+     <option value="proceso">En proceso</option>
+     <option value="bloqueada">Bloqueada</option>
+    </select>
+    <select id="fPlazo" onchange="aplicarFiltros()">
+     <option value="">Cualquier plazo</option>
+     <option value="vencida">Vencidas</option>
+    </select>
+   </div>
+
+   <div id="operationsList"></div>
+  </div>
+ `;
+
+ aplicarFiltros();
+}
+
+function aplicarFiltros(){
+ let lista=activas();
+
+ const buscar=(document.getElementById("fBuscar")?.value || "").toLowerCase();
+ const local=document.getElementById("fLocal")?.value || "";
+ const tipo=document.getElementById("fTipo")?.value || "";
+ const prioridad=document.getElementById("fPrioridad")?.value || "";
+ const estado=document.getElementById("fEstado")?.value || "";
+ const plazo=document.getElementById("fPlazo")?.value || "";
+
+ if(buscar){
+  lista=lista.filter(t=>
+   `${t.titulo} ${t.notas} ${t.sala} ${t.responsable}`
+   .toLowerCase().includes(buscar)
+  );
+ }
+ if(local)lista=lista.filter(t=>t.local===local);
+ if(tipo)lista=lista.filter(t=>t.tipo===tipo);
+ if(prioridad)lista=lista.filter(t=>t.prioridad===prioridad);
+ if(estado)lista=lista.filter(t=>t.estado===estado);
+ if(plazo==="vencida")lista=lista.filter(estaVencida);
+
+ renderListaTareas(lista,"operationsList");
+}
+
+/* =====================================================
+   LOCAL
+===================================================== */
+
+function mostrarLocal(local){
+ vistaActual="local";localActual=local;salaActual=null;
+ actualizarMenuActivo("menu"+local);
+
+ const a=activas().filter(t=>t.local===local);
+
+ document.getElementById("mainContent").innerHTML=`
+  <div class="header">
+   <div>
+    <h1>${local}</h1>
+    <p>${salas[local].length} salas · Control operativo</p>
+   </div>
+   <button class="btn btn-primary" onclick="abrirNuevaTarea('${local}')">+ Nueva tarea</button>
+  </div>
+
+  <div class="cards">
+   <div class="card"><div class="number">${salas[local].length}</div><div class="label">Salas</div></div>
+   <div class="card"><div class="number">${a.length}</div><div class="label">Pendientes</div></div>
+   <div class="card"><div class="number">${a.filter(t=>t.tipo==="averia").length}</div><div class="label">Averías</div></div>
+   <div class="card"><div class="number">${a.filter(t=>t.estado==="bloqueada").length}</div><div class="label">Bloqueadas</div></div>
+  </div>
+
+  <div class="panel">
+   <div class="panel-header"><h2>Salas</h2></div>
+   <div class="rooms">
+    ${salas[local].map(s=>crearSala(local,s)).join("")}
+   </div>
+  </div>
+
+  <div class="panel">
+   <div class="panel-header"><h2>Pendientes de ${local}</h2></div>
+   <div id="localList"></div>
+  </div>
+ `;
+
+ renderListaTareas(a,"localList");
+}
+
+function crearSala(local,sala){
+ const a=activas().filter(t=>t.local===local && t.sala===sala);
+ const averias=a.filter(t=>t.tipo==="averia");
+ const urgentes=a.filter(t=>t.prioridad==="urgente");
+
+ let status="status-green";
+ if(a.length)status="status-orange";
+ if(averias.length || urgentes.length)status="status-red";
+
+ return `
+  <div class="room" onclick="mostrarSala('${local}','${sala.replaceAll("'","\\'")}')">
+   <div class="room-header">
+    <div class="room-name">${sala}</div>
+    <div class="room-status ${status}"></div>
+   </div>
+   <div class="room-info">
+    ${a.length===0?"Sin pendientes":
+      `${a.length} pendiente${a.length!==1?"s":""}${averias.length?` · ${averias.length} avería${averias.length!==1?"s":""}`:""}`}
+   </div>
+  </div>`;
+}
+
+/* =====================================================
+   SALA
+===================================================== */
+
+function mostrarSala(local,sala){
+ vistaActual="sala";localActual=local;salaActual=sala;
+ actualizarMenuActivo("menu"+local);
+
+ const todas=tareas.filter(t=>t.local===local && t.sala===sala);
+ const a=todas.filter(t=>t.estado!=="resuelto");
+ const res=todas.filter(t=>t.estado==="resuelto");
+
+ document.getElementById("mainContent").innerHTML=`
+  <div class="header">
+   <div>
+    <button class="btn btn-small" onclick="mostrarLocal('${local}')" style="margin-bottom:15px">← ${local}</button>
+    <h1>${escaparHTML(sala)}</h1>
+    <p>Ficha operativa de sala</p>
+   </div>
+   <button class="btn btn-primary" onclick="abrirNuevaTarea('${local}','${sala.replaceAll("'","\\'")}')">+ Nueva tarea</button>
+  </div>
+
+  <div class="cards">
+   <div class="card"><div class="number">${a.length}</div><div class="label">Pendientes</div></div>
+   <div class="card"><div class="number">${a.filter(t=>t.tipo==="averia").length}</div><div class="label">Averías</div></div>
+   <div class="card"><div class="number">${a.filter(t=>t.tipo==="revisar").length}</div><div class="label">Revisar</div></div>
+   <div class="card"><div class="number">${res.length}</div><div class="label">Resueltas históricas</div></div>
+  </div>
+
+  <div class="panel">
+   <div class="panel-header"><h2>Activas</h2></div>
+   <div id="roomActive"></div>
+  </div>
+
+  <div class="panel">
+   <div class="panel-header"><h2>Historial de esta sala</h2></div>
+   <div id="roomHistory"></div>
+  </div>
+ `;
+
+ renderListaTareas(a,"roomActive");
+ renderListaTareas(res.slice().reverse(),"roomHistory");
+}
+
+/* =====================================================
+   MIS TAREAS
+===================================================== */
+
+function mostrarMisTareas(){
+ vistaActual="misTareas";localActual=null;salaActual=null;
+ actualizarMenuActivo("menuMisTareas");
+
+ const mias=activas().filter(t=>
+  (t.responsable || "").toLowerCase().includes("eudald")
+ );
+
+ document.getElementById("mainContent").innerHTML=`
+  <div class="header">
+   <div><h1>Mis tareas</h1><p>Tareas activas asignadas a Eudald</p></div>
+   <button class="btn btn-primary" onclick="abrirNuevaTarea()">+ Nueva tarea</button>
+  </div>
+
+  <div class="cards">
+   <div class="card"><div class="number">${mias.length}</div><div class="label">Asignadas</div></div>
+   <div class="card"><div class="number">${mias.filter(t=>t.prioridad==="urgente").length}</div><div class="label">Urgentes</div></div>
+   <div class="card"><div class="number">${mias.filter(estaVencida).length}</div><div class="label">Vencidas</div></div>
+   <div class="card"><div class="number">${mias.filter(t=>t.estado==="bloqueada").length}</div><div class="label">Bloqueadas</div></div>
+  </div>
+
+  <div class="panel">
+   <div id="myTasks"></div>
+  </div>
+ `;
+
+ renderListaTareas(mias,"myTasks");
+}
+
+/* =====================================================
+   HISTORIAL
+===================================================== */
+
+function mostrarHistorial(){
+ vistaActual="historial";localActual=null;salaActual=null;
+ actualizarMenuActivo("menuHistorial");
+
+ const res=tareas.filter(t=>t.estado==="resuelto").slice().reverse();
+
+ document.getElementById("mainContent").innerHTML=`
+  <div class="header">
+   <div><h1>Historial</h1><p>Registro de tareas e incidencias resueltas</p></div>
+  </div>
+
+  <div class="cards">
+   <div class="card"><div class="number">${res.length}</div><div class="label">Total resueltas</div></div>
+   <div class="card"><div class="number">${res.filter(t=>t.tipo==="averia").length}</div><div class="label">Averías resueltas</div></div>
+   <div class="card"><div class="number">${res.filter(t=>t.tipo==="revisar").length}</div><div class="label">Revisiones resueltas</div></div>
+   <div class="card"><div class="number">${res.filter(t=>t.tipo==="mejora").length}</div><div class="label">Mejoras realizadas</div></div>
+  </div>
+
+  <div class="panel">
+   <div id="historyList"></div>
+  </div>
+ `;
+
+ renderListaTareas(res,"historyList");
+}
+
+/* =====================================================
+   PROYECTOS - BASE
+===================================================== */
+
+function mostrarProyectos(){
+ vistaActual="proyectos";localActual=null;salaActual=null;
+ actualizarMenuActivo("menuProyectos");
+
+ document.getElementById("mainContent").innerHTML=`
+  <div class="header">
+   <div>
+    <h1>Proyectos</h1>
+    <p>Mejoras y proyectos operativos de medio/largo plazo</p>
+   </div>
+  </div>
+
+  <div class="panel">
+   <div class="empty">
+    Este módulo está preparado para la siguiente fase.<br><br>
+    Aquí separaremos los proyectos de las incidencias del día a día.
+   </div>
+  </div>
+ `;
+}
+
+/* =====================================================
+   RENDER SEGÚN VISTA
+===================================================== */
+
+function renderVistaActual(){
+ if(vistaActual==="operaciones")mostrarOperaciones();
+ else if(vistaActual==="local" && localActual)mostrarLocal(localActual);
+ else if(vistaActual==="sala" && localActual && salaActual)mostrarSala(localActual,salaActual);
+ else if(vistaActual==="misTareas")mostrarMisTareas();
+ else if(vistaActual==="historial")mostrarHistorial();
+ else if(vistaActual==="proyectos")mostrarProyectos();
+ else mostrarDashboard();
+}
+
+/* CERRAR MODALES CLICANDO FUERA */
+window.addEventListener("click",e=>{
+ ["taskModal","detailModal"].forEach(id=>{
+  const modal=document.getElementById(id);
+  if(e.target===modal)cerrarModal(id);
+ });
+});
+
+/* INICIO */
+guardarDatos();
+mostrarDashboard();
+
+</script>
+</body>
+</html>
