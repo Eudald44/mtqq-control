@@ -330,6 +330,8 @@ textarea{min-height:90px;resize:vertical}
  <div class="modal-content modal-large" id="detailContent"></div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 
 /* =====================================================
@@ -349,6 +351,10 @@ const salas = {
  "Esplugues":["Kemet","Katrina"]
 };
 
+const SUPABASE_URL = "https://sitbzmvoxdgisljctrmy.supabase.co";
+const SUPABASE_KEY = "sb_publishable_tFV5-Fdg5X4R-HXNCAONmA_gEXhpGZy";
+const supabaseMTQQ = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
 let tareas = JSON.parse(localStorage.getItem("mtqq_tareas")) || [];
 
 /* Compatibilidad con tareas creadas en versiones anteriores */
@@ -359,6 +365,7 @@ tareas = tareas.map(t => ({
  ...t
 }));
 
+let sincronizando = false;
 let vistaActual="dashboard";
 let localActual=null;
 let salaActual=null;
@@ -369,6 +376,122 @@ let salaActual=null;
 
 function guardarDatos(){
  localStorage.setItem("mtqq_tareas",JSON.stringify(tareas));
+}
+
+function desdeSupabase(t){
+ return {
+  id:t.id,
+  titulo:t.titulo || "",
+  tipo:t.tipo || "tarea",
+  prioridad:t.prioridad || "normal",
+  local:t.local || "",
+  sala:t.sala || "",
+  responsable:t.responsable || "",
+  fecha:t.fecha_limite || "",
+  estado:t.estado || "pendiente",
+  bloqueo:t.bloqueo || "",
+  notas:t.notas || "",
+  creada:t.creada || null,
+  resuelta:t.resuelta || null,
+  origen:t.origen || "mtqq"
+ };
+}
+
+function haciaSupabase(t){
+ return {
+  titulo:t.titulo,
+  tipo:t.tipo,
+  prioridad:t.prioridad || "normal",
+  local:t.local || null,
+  sala:t.sala || null,
+  responsable:t.responsable || null,
+  fecha_limite:t.fecha || null,
+  estado:t.estado || "pendiente",
+  bloqueo:t.bloqueo || null,
+  notas:t.notas || null,
+  resuelta:t.resuelta || null,
+  origen:t.origen || "mtqq"
+ };
+}
+
+function supabaseConfigurado(){
+ return SUPABASE_KEY && !SUPABASE_KEY.includes("PEGA_AQUI");
+}
+
+async function cargarTareasSupabase(){
+ if(!supabaseConfigurado()){
+  console.warn("MTQQ: falta pegar la Publishable Key de Supabase.");
+  mostrarDashboard();
+  return;
+ }
+
+ sincronizando=true;
+ const {data,error}=await supabaseMTQQ
+  .from("tareas")
+  .select("*")
+  .order("creada",{ascending:true});
+
+ if(error){
+  console.error("MTQQ: error cargando Supabase",error);
+  alert("No se ha podido conectar con Supabase. MTQQ seguirá mostrando la copia local de este dispositivo.");
+  sincronizando=false;
+  mostrarDashboard();
+  return;
+ }
+
+ tareas=(data || []).map(desdeSupabase);
+ guardarDatos();
+ sincronizando=false;
+ renderVistaActual();
+}
+
+async function migrarTareasLocalesSiHaceFalta(){
+ if(!supabaseConfigurado())return;
+
+ const locales=JSON.parse(localStorage.getItem("mtqq_tareas")) || [];
+ if(!locales.length)return;
+
+ const {count,error}=await supabaseMTQQ
+  .from("tareas")
+  .select("*",{count:"exact",head:true});
+
+ if(error){
+  console.error("MTQQ: no se pudo comprobar la migración",error);
+  return;
+ }
+
+ if(count===0){
+  const filas=locales.map(t=>haciaSupabase({
+   prioridad:"normal",
+   bloqueo:"",
+   resuelta:null,
+   origen:"mtqq",
+   ...t
+  }));
+
+  const {error:insertError}=await supabaseMTQQ.from("tareas").insert(filas);
+  if(insertError){
+   console.error("MTQQ: error migrando tareas locales",insertError);
+  }
+ }
+}
+
+async function iniciarMTQQ(){
+ mostrarDashboard();
+
+ if(!supabaseConfigurado())return;
+
+ await migrarTareasLocalesSiHaceFalta();
+ await cargarTareasSupabase();
+
+ supabaseMTQQ
+  .channel("mtqq-tareas")
+  .on(
+   "postgres_changes",
+   {event:"*",schema:"public",table:"tareas"},
+   async ()=>{ if(!sincronizando)await cargarTareasSupabase(); }
+  )
+  .subscribe();
 }
 
 function escaparHTML(texto){
@@ -508,12 +631,17 @@ function mostrarCampoBloqueo(){
   estado==="bloqueada" ? "block":"none";
 }
 
-function guardarTarea(){
+async function guardarTarea(){
  const titulo=document.getElementById("titulo").value.trim();
  const local=document.getElementById("local").value;
 
  if(!titulo){alert("Escribe un título.");return;}
  if(!local){alert("Selecciona un local.");return;}
+
+ if(!supabaseConfigurado()){
+  alert("Falta configurar la Publishable Key de Supabase.");
+  return;
+ }
 
  const editId=document.getElementById("editId").value;
  const estado=document.getElementById("estado").value;
@@ -528,53 +656,80 @@ function guardarTarea(){
   fecha:document.getElementById("fecha").value,
   estado,
   bloqueo:estado==="bloqueada" ? document.getElementById("bloqueo").value : "",
-  notas:document.getElementById("notas").value
+  notas:document.getElementById("notas").value,
+  origen:"mtqq"
  };
 
- if(editId){
-  const t=tareas.find(x=>String(x.id)===String(editId));
-  if(t){
-   const antesResuelta=t.estado==="resuelto";
-   Object.assign(t,datos);
+ let error;
 
-   if(estado==="resuelto" && !antesResuelta){
-    t.resuelta=new Date().toISOString();
-   }
-   if(estado!=="resuelto")t.resuelta=null;
-  }
+ if(editId){
+  const anterior=tareas.find(x=>String(x.id)===String(editId));
+  datos.resuelta=
+   estado==="resuelto"
+    ? (anterior?.resuelta || new Date().toISOString())
+    : null;
+
+  ({error}=await supabaseMTQQ
+   .from("tareas")
+   .update(haciaSupabase(datos))
+   .eq("id",Number(editId)));
  }else{
-  tareas.push({
-   id:Date.now(),
-   ...datos,
-   creada:new Date().toISOString(),
-   resuelta:estado==="resuelto" ? new Date().toISOString() : null
-  });
+  datos.resuelta=estado==="resuelto" ? new Date().toISOString() : null;
+  ({error}=await supabaseMTQQ
+   .from("tareas")
+   .insert(haciaSupabase(datos)));
  }
 
- guardarDatos();
+ if(error){
+  console.error(error);
+  alert("No se ha podido guardar la tarea en Supabase.");
+  return;
+ }
+
  cerrarModal("taskModal");
- renderVistaActual();
+ await cargarTareasSupabase();
 }
 
-function resolverTarea(id){
- const t=tareas.find(x=>x.id===id);
- if(!t)return;
+async function resolverTarea(id){
+ if(!supabaseConfigurado())return;
 
- t.estado="resuelto";
- t.bloqueo="";
- t.resuelta=new Date().toISOString();
- guardarDatos();
- renderVistaActual();
+ const {error}=await supabaseMTQQ
+  .from("tareas")
+  .update({
+   estado:"resuelto",
+   bloqueo:null,
+   resuelta:new Date().toISOString()
+  })
+  .eq("id",Number(id));
+
+ if(error){
+  console.error(error);
+  alert("No se ha podido resolver la tarea.");
+  return;
+ }
+
+ await cargarTareasSupabase();
 }
 
-function reabrirTarea(id){
- const t=tareas.find(x=>x.id===id);
- if(!t)return;
- t.estado="pendiente";
- t.resuelta=null;
- guardarDatos();
+async function reabrirTarea(id){
+ if(!supabaseConfigurado())return;
+
+ const {error}=await supabaseMTQQ
+  .from("tareas")
+  .update({
+   estado:"pendiente",
+   resuelta:null
+  })
+  .eq("id",Number(id));
+
+ if(error){
+  console.error(error);
+  alert("No se ha podido reabrir la tarea.");
+  return;
+ }
+
  cerrarModal("detailModal");
- renderVistaActual();
+ await cargarTareasSupabase();
 }
 
 function cerrarModal(id){
@@ -1100,8 +1255,7 @@ window.addEventListener("click",e=>{
 });
 
 /* INICIO */
-guardarDatos();
-mostrarDashboard();
+iniciarMTQQ();
 
 </script>
 </body>
