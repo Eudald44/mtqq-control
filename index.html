@@ -3,223 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MTQQ Control</title>
+<title>Elements i The City</title>
 
 <style>
 *{box-sizing:border-box}
-:root{
- --bg:#f4f6f8;--panel:#fff;--dark:#111827;--dark2:#1f2937;
- --text:#1f2937;--muted:#6b7280;--border:#e5e7eb;--blue:#2563eb;
- --red:#dc2626;--orange:#d97706;--green:#059669;--purple:#7c3aed;
-}
-body{
- margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
- background:var(--bg);color:var(--text)
-}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
+:root{--bg:#0d0f12;--panel:#171a1f;--panel2:#1d2127;--sidebar:#101216;--text:#f3eee3;--muted:#9ca3af;--border:#2a2f36;--gold:#c6a15b;--gold2:#e2c47e;--red:#ef6464;--orange:#e5a84b;--green:#57b98b;--purple:#9b87d6;--blue:#6f91c8}
+html,body{min-height:100%}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 85% 0%,#1b1a17 0,#0d0f12 35%);color:var(--text)}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.app-shell{display:none}
+.sidebar{position:fixed;left:0;top:0;width:270px;height:100vh;background:linear-gradient(180deg,#121419,#0d0f12);border-right:1px solid #252930;color:white;padding:24px 18px;overflow-y:auto;z-index:50}
+.brand{padding:4px 8px 22px;border-bottom:1px solid #242830;margin-bottom:16px}.brand-mark{width:42px;height:42px;border:1px solid var(--gold);border-radius:11px;display:flex;align-items:center;justify-content:center;color:var(--gold2);font-weight:900;font-size:21px;margin-bottom:12px}.logo{font-size:18px;font-weight:850;letter-spacing:1.8px}.brand-sub{font-size:10px;color:#777f89;letter-spacing:1.4px;margin-top:4px}
+.section-title{font-size:10px;color:#6f7680;margin:24px 10px 8px;font-weight:800;letter-spacing:1.5px}.menu-item{padding:10px 11px;border-radius:9px;margin:2px 0;cursor:pointer;color:#b9bec6;font-size:13px;transition:.15s;border:1px solid transparent}.menu-item:hover{background:#191c22;color:#fff}.menu-item.active{background:linear-gradient(90deg,rgba(198,161,91,.16),rgba(198,161,91,.04));border-color:rgba(198,161,91,.24);color:var(--gold2)}.menu-indent{padding-left:28px;font-size:12.5px}.new-task{margin-top:22px;background:linear-gradient(135deg,#b9904d,#d5b56e);color:#15120c;padding:11px;border-radius:9px;text-align:center;cursor:pointer;font-weight:800;box-shadow:0 8px 24px rgba(198,161,91,.14)}
+.user-box{margin-top:20px;padding:16px 9px 4px;border-top:1px solid #242830;color:#9097a1;font-size:11px}.user-box strong{display:block;color:#f1eadc;font-size:13px;margin-bottom:3px}.logout-link{margin-top:9px;color:#8e949c;cursor:pointer;display:inline-block}.logout-link:hover{color:var(--gold2)}
+.main{margin-left:270px;padding:38px 42px 70px;max-width:1650px}.header{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}.eyebrow{font-size:10px;color:var(--gold);font-weight:850;letter-spacing:1.6px;text-transform:uppercase;margin-bottom:8px}.header h1{margin:0;font-size:31px;letter-spacing:-.5px}.header p{color:var(--muted);margin:7px 0 0}.header-actions{display:flex;gap:8px}
+.btn{border:1px solid #353b44;background:#1b1f25;color:#d8dce2;padding:9px 13px;border-radius:9px;font-weight:650}.btn:hover{background:#22272e}.btn-primary{background:linear-gradient(135deg,#b9904d,#d5b56e);color:#17130c;border-color:#c8a45e}.btn-primary:hover{filter:brightness(1.05)}.btn-danger{background:#2a181b;color:#f29a9a;border-color:#573036}.btn-success{background:#14251e;color:#78cfa5;border-color:#28513f}.btn-small{padding:7px 10px;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-top:28px}.card{background:linear-gradient(145deg,#191c21,#15181c);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.12)}.card.clickable{cursor:pointer;transition:.16s}.card.clickable:hover{border-color:#5b513d;transform:translateY(-2px)}.number{font-size:30px;font-weight:850}.label{margin-top:5px;color:var(--muted);font-size:12px}
+.panel{background:linear-gradient(145deg,#171a1f,#14171b);margin-top:22px;padding:22px;border:1px solid var(--border);border-radius:14px;box-shadow:0 12px 35px rgba(0,0,0,.12)}.panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:15px}.panel h2{margin:0;font-size:17px}.empty{padding:32px;text-align:center;color:#777f89;border:1px dashed #343a43;border-radius:10px}
+.module-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}.module-card{background:linear-gradient(145deg,#1a1d22,#15181c);border:1px solid var(--border);border-radius:14px;padding:19px;cursor:pointer;transition:.16s}.module-card:hover{transform:translateY(-2px);border-color:#5c5039}.module-icon{width:36px;height:36px;border-radius:9px;background:rgba(198,161,91,.11);color:var(--gold2);display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:14px}.module-card strong{display:block;font-size:14px}.module-card span{display:block;color:var(--muted);font-size:11.5px;line-height:1.45;margin-top:6px}.soon{font-size:9px!important;color:#7c725f!important;text-transform:uppercase;letter-spacing:1px;margin-top:10px!important}
+.alert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}.alert-card{background:#171a1f;border:1px solid var(--border);border-radius:12px;padding:17px;border-left:3px solid #454b54}.alert-card.red{border-left-color:var(--red)}.alert-card.orange{border-left-color:var(--orange)}.alert-card.purple{border-left-color:var(--purple)}.alert-number{font-size:23px;font-weight:850}.alert-label{font-size:11px;color:var(--muted);margin-top:3px}
+.locations{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.location{border:1px solid var(--border);background:#171a1f;padding:17px;border-radius:11px;cursor:pointer;transition:.15s}.location:hover{border-color:#65583e;transform:translateY(-2px)}.location strong{display:block;margin-bottom:7px}.location span{font-size:11.5px;color:var(--muted)}
+.rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.room{background:#171a1f;border:1px solid var(--border);border-radius:11px;padding:18px;cursor:pointer;transition:.15s}.room:hover{border-color:#65583e;transform:translateY(-1px)}.room-header{display:flex;justify-content:space-between;align-items:center}.room-name{font-weight:700;font-size:14px}.room-status{width:9px;height:9px;border-radius:50%}.status-green{background:#57b98b}.status-orange{background:#e5a84b}.status-red{background:#ef6464}.room-info{color:var(--muted);font-size:11.5px;margin-top:10px}
+.task{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:14px 3px;border-bottom:1px solid #272c33}.task:last-child{border-bottom:none}.task-main{cursor:pointer;flex:1}.task-main:hover .task-title{color:var(--gold2)}.task-title{font-weight:650}.task-info{font-size:11.5px;color:var(--muted);margin-top:6px}.task-actions{display:flex;gap:7px;flex-shrink:0}.badge{display:inline-block;font-size:9px;font-weight:850;padding:4px 7px;border-radius:20px;margin-right:5px;vertical-align:middle}.badge-averia{background:#3a1d20;color:#f39a9a}.badge-revisar{background:#332b17;color:#e7c36f}.badge-compra{background:#17283b;color:#8cb8ed}.badge-tarea{background:#292d33;color:#b9c0c9}.badge-mejora{background:#173025;color:#7dd0a5}.priority-urgente{background:#3a1d20;color:#f39a9a}.priority-importante{background:#382516;color:#efad70}.priority-normal{background:#282c31;color:#a5abb3}.state-proceso{background:#17283b;color:#8cb8ed}.state-bloqueada{background:#29213b;color:#b9a0ec}.state-resuelto{background:#173025;color:#7dd0a5}.overdue{color:#ef7777;font-weight:700}
+.filters{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-bottom:18px}.filters input,.filters select,input,select,textarea{width:100%;padding:10px;border:1px solid #353b44;border-radius:8px;background:#111419;color:#e7e9ec}select option{background:#15181c}.modal{display:none;position:fixed;z-index:100;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.68);backdrop-filter:blur(5px);align-items:center;justify-content:center;padding:20px}.modal-content{background:#171a1f;border:1px solid #303640;width:620px;max-width:100%;max-height:92vh;overflow-y:auto;border-radius:15px;padding:27px;box-shadow:0 25px 70px rgba(0,0,0,.5)}.modal-large{width:760px}.modal-header{display:flex;justify-content:space-between;align-items:center;gap:20px}.modal-header h2{margin:0}.close{font-size:25px;cursor:pointer;color:var(--muted)}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:21px}.form-full{grid-column:1/-1}label{display:block;font-size:10px;font-weight:850;margin-bottom:6px;color:#9da4ad;letter-spacing:.7px}textarea{min-height:90px;resize:vertical}.form-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:21px}.detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-top:21px}.detail-box,.notes-box{background:#111419;border:1px solid #282d34;padding:13px;border-radius:9px}.detail-label{font-size:9px;font-weight:850;color:#777f89;margin-bottom:5px;letter-spacing:.7px}.detail-value{font-size:13px}.notes-box{margin-top:14px;white-space:pre-wrap;font-size:13px;line-height:1.5}.history-date{font-size:11px;color:var(--muted)}
+.auth-screen{position:fixed;inset:0;z-index:1000;background:radial-gradient(circle at 50% 20%,#252116,#0c0e11 52%);display:flex;align-items:center;justify-content:center;padding:24px}.auth-card{width:410px;max-width:100%;background:rgba(22,25,30,.96);border:1px solid #38342a;border-radius:18px;padding:34px;box-shadow:0 30px 90px rgba(0,0,0,.55)}.auth-brand{text-align:center;margin-bottom:28px}.auth-brand:before{content:'E';width:52px;height:52px;border:1px solid var(--gold);border-radius:13px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--gold2);font-size:25px;font-weight:900}.auth-brand h1{margin:0;font-size:22px;letter-spacing:2px}.auth-brand p{margin:7px 0 0;color:#858b94;font-size:12px}.auth-card label{margin-top:15px}.auth-error{display:none;margin-top:14px;padding:10px 12px;border-radius:8px;background:#321b1e;color:#f09a9a;font-size:12px}.auth-button{width:100%;margin-top:20px;padding:11px}
 
-/* SIDEBAR */
-.sidebar{
- position:fixed;left:0;top:0;width:240px;height:100vh;background:var(--dark);
- color:white;padding:28px 20px;overflow-y:auto
-}
-.logo{font-size:21px;font-weight:800;margin-bottom:35px}
-.section-title{
- font-size:11px;color:#6b7280;margin:28px 0 8px;font-weight:700;letter-spacing:1px
-}
-.menu-item{
- padding:10px 12px;border-radius:7px;margin:3px 0;cursor:pointer;color:#d1d5db
-}
-.menu-item:hover,.menu-item.active{background:var(--dark2);color:white}
-.new-task{
- margin-top:30px;background:var(--blue);padding:11px;border-radius:8px;
- text-align:center;cursor:pointer;font-weight:700
-}
-
-/* MAIN */
-.main{margin-left:240px;padding:40px;max-width:1600px}
-.header{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
-.header h1{margin:0;font-size:30px}
-.header p{color:var(--muted);margin:6px 0 0}
-.header-actions{display:flex;gap:8px}
-
-/* BOTONES */
-.btn{
- border:1px solid #d1d5db;background:white;color:#374151;padding:9px 13px;
- border-radius:8px;font-weight:600
-}
-.btn:hover{background:#f9fafb}
-.btn-primary{background:var(--blue);color:white;border-color:var(--blue)}
-.btn-primary:hover{background:#1d4ed8}
-.btn-danger{background:#fff1f2;color:#be123c;border-color:#fecdd3}
-.btn-success{background:#ecfdf5;color:#047857;border-color:#a7f3d0}
-.btn-small{padding:7px 10px;font-size:13px}
-
-/* CARDS */
-.cards{
- display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:30px
-}
-.card{
- background:white;border-radius:12px;padding:22px;box-shadow:0 1px 3px rgba(0,0,0,.08)
-}
-.card.clickable{cursor:pointer}
-.card.clickable:hover{box-shadow:0 4px 12px rgba(0,0,0,.10)}
-.number{font-size:30px;font-weight:800}
-.label{margin-top:5px;color:var(--muted)}
-
-/* PANELS */
-.panel{
- background:white;margin-top:25px;padding:24px;border-radius:12px;
- box-shadow:0 1px 3px rgba(0,0,0,.08)
-}
-.panel-header{
- display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:15px
-}
-.panel h2{margin:0;font-size:18px}
-.empty{
- padding:35px;text-align:center;color:#9ca3af;border:1px dashed #d1d5db;border-radius:8px
-}
-
-/* ALERTAS */
-.alert-grid{
- display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:25px
-}
-.alert-card{background:white;border-radius:12px;padding:18px;border-left:4px solid #d1d5db}
-.alert-card.red{border-left-color:#ef4444}
-.alert-card.orange{border-left-color:#f59e0b}
-.alert-card.purple{border-left-color:#8b5cf6}
-.alert-number{font-size:24px;font-weight:800}
-.alert-label{font-size:13px;color:var(--muted);margin-top:3px}
-
-/* LOCALES */
-.locations{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
-.location{
- border:1px solid var(--border);padding:18px;border-radius:10px;cursor:pointer;transition:.15s
-}
-.location:hover{border-color:var(--blue);transform:translateY(-2px)}
-.location strong{display:block;margin-bottom:8px}
-.location span{font-size:13px;color:var(--muted)}
-
-/* SALAS */
-.rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.room{
- background:white;border:1px solid var(--border);border-radius:11px;padding:20px;
- cursor:pointer;transition:.15s
-}
-.room:hover{border-color:var(--blue);transform:translateY(-1px)}
-.room-header{display:flex;justify-content:space-between;align-items:center}
-.room-name{font-weight:700;font-size:15px}
-.room-status{width:11px;height:11px;border-radius:50%}
-.status-green{background:#22c55e}
-.status-orange{background:#f59e0b}
-.status-red{background:#ef4444}
-.room-info{color:var(--muted);font-size:13px;margin-top:12px}
-
-/* TAREAS */
-.task{
- display:flex;justify-content:space-between;align-items:center;gap:15px;
- padding:15px 4px;border-bottom:1px solid var(--border)
-}
-.task:last-child{border-bottom:none}
-.task-main{cursor:pointer;flex:1}
-.task-main:hover .task-title{text-decoration:underline}
-.task-title{font-weight:650}
-.task-info{font-size:13px;color:var(--muted);margin-top:6px}
-.task-actions{display:flex;gap:7px;flex-shrink:0}
-.badge{
- display:inline-block;font-size:10px;font-weight:800;padding:4px 8px;
- border-radius:20px;margin-right:5px;vertical-align:middle
-}
-.badge-averia{background:#fee2e2;color:#991b1b}
-.badge-revisar{background:#fef3c7;color:#92400e}
-.badge-compra{background:#dbeafe;color:#1e40af}
-.badge-tarea{background:#e5e7eb;color:#374151}
-.badge-mejora{background:#dcfce7;color:#166534}
-.priority-urgente{background:#fee2e2;color:#b91c1c}
-.priority-importante{background:#ffedd5;color:#c2410c}
-.priority-normal{background:#f3f4f6;color:#6b7280}
-.state-proceso{background:#dbeafe;color:#1d4ed8}
-.state-bloqueada{background:#ede9fe;color:#6d28d9}
-.state-resuelto{background:#dcfce7;color:#047857}
-.overdue{color:#dc2626;font-weight:700}
-
-/* FILTROS */
-.filters{
- display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:20px
-}
-.filters input,.filters select{
- width:100%;padding:9px;border:1px solid #d1d5db;border-radius:7px;background:white
-}
-
-/* FORM */
-.modal{
- display:none;position:fixed;z-index:100;left:0;top:0;width:100%;height:100%;
- background:rgba(0,0,0,.45);align-items:center;justify-content:center;padding:20px
-}
-.modal-content{
- background:white;width:620px;max-width:100%;max-height:92vh;overflow-y:auto;
- border-radius:14px;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,.2)
-}
-.modal-large{width:760px}
-.modal-header{display:flex;justify-content:space-between;align-items:center;gap:20px}
-.modal-header h2{margin:0}
-.close{font-size:26px;cursor:pointer;color:var(--muted)}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:22px}
-.form-full{grid-column:1/-1}
-label{
- display:block;font-size:11px;font-weight:800;margin-bottom:6px;color:#4b5563;letter-spacing:.4px
-}
-input,select,textarea{
- width:100%;padding:10px;border:1px solid #d1d5db;border-radius:7px;background:white
-}
-textarea{min-height:90px;resize:vertical}
-.form-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:22px}
-
-/* DETALLE */
-.detail-grid{
- display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin-top:22px
-}
-.detail-box{background:#f9fafb;padding:14px;border-radius:9px}
-.detail-label{font-size:11px;font-weight:800;color:var(--muted);margin-bottom:5px}
-.detail-value{font-size:14px}
-.notes-box{
- margin-top:15px;background:#f9fafb;padding:15px;border-radius:9px;
- white-space:pre-wrap;font-size:14px;line-height:1.5
-}
-
-/* HISTORIAL */
-.history-date{font-size:12px;color:var(--muted)}
-
-/* RESPONSIVE */
-@media(max-width:1100px){
- .cards,.locations{grid-template-columns:repeat(2,1fr)}
- .rooms{grid-template-columns:repeat(2,1fr)}
- .filters{grid-template-columns:repeat(3,1fr)}
-}
+.company-title{padding:7px 8px 22px;border-bottom:1px solid #242830;margin-bottom:18px}.company-title h1{margin:0;color:#f3eee3;font-size:19px;line-height:1.15;letter-spacing:.4px}.company-title span{display:block;color:var(--gold);font-size:9px;letter-spacing:1.7px;text-transform:uppercase;margin-bottom:7px;font-weight:850}
+.area-menu{margin:7px 0}.area-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 12px;background:#171a1f;border:1px solid #2b3037;border-radius:11px;color:#e9e3d7;font-size:12px;font-weight:850;letter-spacing:.8px;cursor:pointer;transition:.15s}.area-toggle:hover,.area-toggle.open{border-color:rgba(198,161,91,.42);background:linear-gradient(90deg,rgba(198,161,91,.13),#171a1f)}.area-arrow{color:var(--gold2);font-size:12px;transition:transform .18s}.area-toggle.open .area-arrow{transform:rotate(90deg)}.area-children{display:none;padding:6px 0 7px 10px;border-left:1px solid #2c3036;margin-left:10px}.area-children.open{display:block}.area-children .menu-item{font-size:12px;padding:9px 10px}.area-placeholder{padding:10px 11px;color:#6f7680;font-size:11px;line-height:1.45}.sidebar-spacer{height:8px}
+@media(max-width:1100px){.cards,.locations{grid-template-columns:repeat(2,1fr)}.rooms,.module-grid{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.sidebar{position:relative;width:100%;height:auto;max-height:none;padding:16px}.brand{display:flex;align-items:center;gap:12px;padding-bottom:14px}.brand-mark{margin:0;width:36px;height:36px}.brand-sub{display:none}.section-title{margin-top:16px}.menu-item{padding:9px 10px}.menu-indent{padding-left:20px}.main{margin-left:0;padding:24px 16px 60px}.cards,.locations,.rooms,.module-grid,.alert-grid{grid-template-columns:1fr 1fr}.filters{grid-template-columns:1fr 1fr}.header{align-items:center}.header h1{font-size:25px}.form-grid,.detail-grid{grid-template-columns:1fr}.form-full{grid-column:auto}}
+@media(max-width:480px){.cards,.locations,.rooms,.module-grid,.alert-grid,.filters{grid-template-columns:1fr}.main{padding-top:20px}}
 </style>
 </head>
 
 <body>
 
+<div class="auth-screen" id="authScreen">
+ <div class="auth-card">
+  <div class="auth-brand"><h1>ELEMENTS I THE CITY</h1><p>Acceso interno</p></div>
+  <label>EMAIL</label><input id="loginEmail" type="email" autocomplete="username" placeholder="tu@email.com">
+  <label>CONTRASEÑA</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="••••••••" onkeydown="if(event.key==='Enter') iniciarSesion()">
+  <div class="auth-error" id="authError"></div>
+  <button class="btn btn-primary auth-button" id="loginButton" onclick="iniciarSesion()">Entrar</button>
+ </div>
+</div>
+
+<div class="app-shell" id="appShell">
 <div class="sidebar">
- <div class="logo">MTQQ CONTROL</div>
+ <div class="company-title"><span>Gestión interna</span><h1>Elements i The City</h1></div>
 
- <div class="menu-item active" id="menuDashboard" onclick="mostrarDashboard()">⌂ Dashboard</div>
+ <div class="area-menu">
+  <div class="area-toggle open" id="toggleOperaciones" onclick="toggleArea('operaciones')"><span>OPERACIONES</span><span class="area-arrow">›</span></div>
+  <div class="area-children open" id="areaOperaciones">
+   <div class="menu-item active" id="menuDashboard" onclick="mostrarDashboard()">◈ Panel de operaciones</div>
+   <div class="menu-item" id="menuOperaciones" onclick="mostrarOperaciones()">✓ Tareas de mantenimiento</div>
+   <div class="menu-item" id="menuPreventivo" onclick="mostrarModulo('preventivo')">↻ Mantenimiento preventivo</div>
+   <div class="menu-item" id="menuCompras" onclick="mostrarCompras()">▣ Compras</div>
+   <div class="menu-item" id="menuStock" onclick="mostrarModulo('stock')">▦ Stock / almacén</div>
+   <div class="menu-item" id="menuProveedores" onclick="mostrarModulo('proveedores')">◇ Proveedores</div>
+   <div class="menu-item" id="menuPersonal" onclick="mostrarModulo('personal')">◎ Personal operativo</div>
+   <div class="menu-item" id="menuProyectos" onclick="mostrarProyectos()">▤ Proyectos / mejoras</div>
+   <div class="menu-item" id="menuDocumentacion" onclick="mostrarModulo('documentacion')">≡ Documentación técnica</div>
+   <div class="section-title">LOCALES Y SALAS</div>
+   <div class="menu-item menu-indent" id="menuTerrassa" onclick="mostrarLocal('Terrassa')">Terrassa</div>
+   <div class="menu-item menu-indent" id="menuSabadell" onclick="mostrarLocal('Sabadell')">Sabadell</div>
+   <div class="menu-item menu-indent" id="menuBarcelona" onclick="mostrarLocal('Barcelona')">Barcelona</div>
+   <div class="menu-item menu-indent" id="menuEsplugues" onclick="mostrarLocal('Esplugues')">Esplugues</div>
+  </div>
+ </div>
 
- <div class="section-title">ELEMENTS</div>
- <div class="menu-item" id="menuOperaciones" onclick="mostrarOperaciones()">▣ Operaciones</div>
- <div class="menu-item" id="menuTerrassa" onclick="mostrarLocal('Terrassa')">Terrassa</div>
- <div class="menu-item" id="menuSabadell" onclick="mostrarLocal('Sabadell')">Sabadell</div>
- <div class="menu-item" id="menuBarcelona" onclick="mostrarLocal('Barcelona')">Barcelona</div>
- <div class="menu-item" id="menuEsplugues" onclick="mostrarLocal('Esplugues')">Esplugues</div>
+ <div class="area-menu">
+  <div class="area-toggle" id="toggleATC" onclick="toggleArea('atc')"><span>ATC</span><span class="area-arrow">›</span></div>
+  <div class="area-children" id="areaATC">
+   <div class="menu-item" id="menuClientes" onclick="mostrarModulo('clientes')">◌ Panel ATC</div>
+   <div class="area-placeholder">Aquí iremos añadiendo los apartados de Atención al Cliente.</div>
+  </div>
+ </div>
 
- <div class="section-title">ORGANIZACIÓN</div>
- <div class="menu-item" id="menuMisTareas" onclick="mostrarMisTareas()">✓ Mis tareas</div>
- <div class="menu-item" id="menuHistorial" onclick="mostrarHistorial()">↻ Historial</div>
- <div class="menu-item" id="menuProyectos" onclick="mostrarProyectos()">▤ Proyectos</div>
+ <div class="area-menu">
+  <div class="area-toggle" id="toggleRRHH" onclick="toggleArea('rrhh')"><span>RRHH</span><span class="area-arrow">›</span></div>
+  <div class="area-children" id="areaRRHH">
+   <div class="menu-item" id="menuRRHH" onclick="mostrarModulo('rrhh')">◉ Panel RRHH</div>
+   <div class="area-placeholder">Aquí iremos añadiendo los apartados de Recursos Humanos.</div>
+  </div>
+ </div>
 
+ <div class="sidebar-spacer"></div>
  <div class="new-task" onclick="abrirNuevaTarea()">+ Nueva tarea</div>
+ <div class="user-box" id="userBox"></div>
 </div>
 
 <div class="main" id="mainContent"></div>
@@ -329,6 +198,7 @@ textarea{min-height:90px;resize:vertical}
 <div class="modal" id="detailModal">
  <div class="modal-content modal-large" id="detailContent"></div>
 </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -366,6 +236,9 @@ tareas = tareas.map(t => ({
 }));
 
 let sincronizando = false;
+let usuarioActual=null;
+let perfilActual=null;
+let canalTareas=null;
 let vistaActual="dashboard";
 let localActual=null;
 let salaActual=null;
@@ -476,22 +349,86 @@ async function migrarTareasLocalesSiHaceFalta(){
  }
 }
 
-async function iniciarMTQQ(){
+async function cargarPerfil(){
+ const {data,error}=await supabaseMTQQ
+  .from("perfiles")
+  .select("id,nombre,rol,activo")
+  .eq("id",usuarioActual.id)
+  .single();
+ if(error || !data){
+  console.error("MTQQ: perfil no disponible",error);
+  return null;
+ }
+ return data;
+}
+
+function mostrarLogin(mensaje=""){
+ document.getElementById("appShell").style.display="none";
+ document.getElementById("authScreen").style.display="flex";
+ const error=document.getElementById("authError");
+ error.textContent=mensaje;
+ error.style.display=mensaje ? "block":"none";
+}
+
+function mostrarAplicacion(){
+ document.getElementById("authScreen").style.display="none";
+ document.getElementById("appShell").style.display="block";
+ document.getElementById("userBox").innerHTML=`
+  <strong>${escaparHTML(perfilActual?.nombre || usuarioActual?.email || "Usuario")}</strong>
+  <span>${perfilActual?.rol==="admin" ? "Administrador" : escaparHTML(perfilActual?.rol || "Usuario")}</span><br>
+  <span class="logout-link" onclick="cerrarSesion()">Cerrar sesión</span>`;
+}
+
+async function iniciarSesion(){
+ const email=document.getElementById("loginEmail").value.trim();
+ const password=document.getElementById("loginPassword").value;
+ const boton=document.getElementById("loginButton");
+ const errorBox=document.getElementById("authError");
+ if(!email || !password){
+  errorBox.textContent="Introduce email y contraseña.";errorBox.style.display="block";return;
+ }
+ boton.disabled=true;boton.textContent="Entrando...";errorBox.style.display="none";
+ const {data,error}=await supabaseMTQQ.auth.signInWithPassword({email,password});
+ boton.disabled=false;boton.textContent="Entrar";
+ if(error){
+  console.error(error);
+  errorBox.textContent="Email o contraseña incorrectos.";errorBox.style.display="block";return;
+ }
+ await activarSesion(data.user);
+}
+
+async function cerrarSesion(){
+ if(canalTareas){await supabaseMTQQ.removeChannel(canalTareas);canalTareas=null;}
+ await supabaseMTQQ.auth.signOut();
+ usuarioActual=null;perfilActual=null;tareas=[];
+ mostrarLogin();
+}
+
+async function activarSesion(user){
+ usuarioActual=user;
+ perfilActual=await cargarPerfil();
+ if(!perfilActual || !perfilActual.activo){
+  await supabaseMTQQ.auth.signOut();
+  usuarioActual=null;perfilActual=null;
+  mostrarLogin("Tu usuario no tiene un perfil activo en MTQQ.");
+  return;
+ }
+ mostrarAplicacion();
  mostrarDashboard();
-
- if(!supabaseConfigurado())return;
-
  await migrarTareasLocalesSiHaceFalta();
  await cargarTareasSupabase();
-
- supabaseMTQQ
+ if(canalTareas)await supabaseMTQQ.removeChannel(canalTareas);
+ canalTareas=supabaseMTQQ
   .channel("mtqq-tareas")
-  .on(
-   "postgres_changes",
-   {event:"*",schema:"public",table:"tareas"},
-   async ()=>{ if(!sincronizando)await cargarTareasSupabase(); }
-  )
+  .on("postgres_changes",{event:"*",schema:"public",table:"tareas"},async()=>{if(!sincronizando)await cargarTareasSupabase();})
   .subscribe();
+}
+
+async function iniciarMTQQ(){
+ if(!supabaseConfigurado()){mostrarLogin("Falta configurar Supabase.");return;}
+ const {data:{session}}=await supabaseMTQQ.auth.getSession();
+ if(session?.user)await activarSesion(session.user);
+ else mostrarLogin();
 }
 
 function escaparHTML(texto){
@@ -545,6 +482,30 @@ function nombrePrioridad(p){
 
 function activas(){
  return tareas.filter(t=>t.estado!=="resuelto");
+}
+
+function toggleArea(area){
+ const mapa={operaciones:["areaOperaciones","toggleOperaciones"],atc:["areaATC","toggleATC"],rrhh:["areaRRHH","toggleRRHH"]};
+ const actual=mapa[area];if(!actual)return;
+ const panel=document.getElementById(actual[0]);
+ const boton=document.getElementById(actual[1]);
+ const abrir=!panel.classList.contains("open");
+ Object.values(mapa).forEach(([panelId,botonId])=>{
+  document.getElementById(panelId)?.classList.remove("open");
+  document.getElementById(botonId)?.classList.remove("open");
+ });
+ if(abrir){panel.classList.add("open");boton.classList.add("open");}
+}
+
+function abrirArea(area){
+ const mapa={operaciones:["areaOperaciones","toggleOperaciones"],atc:["areaATC","toggleATC"],rrhh:["areaRRHH","toggleRRHH"]};
+ const actual=mapa[area];if(!actual)return;
+ Object.values(mapa).forEach(([panelId,botonId])=>{
+  document.getElementById(panelId)?.classList.remove("open");
+  document.getElementById(botonId)?.classList.remove("open");
+ });
+ document.getElementById(actual[0])?.classList.add("open");
+ document.getElementById(actual[1])?.classList.add("open");
 }
 
 function actualizarMenuActivo(id){
@@ -868,6 +829,7 @@ function renderListaTareas(lista,id){
 ===================================================== */
 
 function mostrarDashboard(){
+ abrirArea("operaciones");
  vistaActual="dashboard";localActual=null;salaActual=null;
  actualizarMenuActivo("menuDashboard");
 
@@ -882,8 +844,9 @@ function mostrarDashboard(){
  document.getElementById("mainContent").innerHTML=`
   <div class="header">
    <div>
-    <h1>Dashboard</h1>
-    <p>Centro de operaciones · MTQQ Control</p>
+    <div class="eyebrow">Elements · Operaciones</div>
+    <h1>Panel de operaciones</h1>
+    <p>Estado general de mantenimiento y actividad operativa</p>
    </div>
    <button class="btn btn-primary" onclick="abrirNuevaTarea()">+ Nueva tarea</button>
   </div>
@@ -912,12 +875,24 @@ function mostrarDashboard(){
    </div>
   </div>
 
+  <div class="module-grid">
+   <div class="module-card" onclick="mostrarOperaciones()"><div class="module-icon">✓</div><strong>Tareas de mantenimiento</strong><span>Averías, revisiones, reparaciones y mejoras técnicas.</span></div>
+   <div class="module-card" onclick="mostrarModulo('preventivo')"><div class="module-icon">↻</div><strong>Mantenimiento preventivo</strong><span>Revisiones periódicas y checklists por sala.</span><span class="soon">Preparado para desarrollar</span></div>
+   <div class="module-card" onclick="mostrarCompras()"><div class="module-icon">▣</div><strong>Compras</strong><span>Necesidades de compra y seguimiento de material.</span></div>
+   <div class="module-card" onclick="mostrarModulo('stock')"><div class="module-icon">▦</div><strong>Stock / almacén</strong><span>Recambios, consumibles, mínimos y ubicaciones.</span><span class="soon">Preparado para desarrollar</span></div>
+   <div class="module-card" onclick="mostrarModulo('proveedores')"><div class="module-icon">◇</div><strong>Proveedores</strong><span>Pedidos por proveedor: solicitado, en proceso y entregado.</span><span class="soon">Preparado para desarrollar</span></div>
+   <div class="module-card" onclick="mostrarModulo('personal')"><div class="module-icon">◎</div><strong>Personal operativo</strong><span>Responsables y estructura operativa de los locales.</span><span class="soon">Preparado para desarrollar</span></div>
+   <div class="module-card" onclick="mostrarProyectos()"><div class="module-icon">▤</div><strong>Proyectos / mejoras</strong><span>Trabajos de medio y largo plazo separados del día a día.</span></div>
+   <div class="module-card" onclick="mostrarModulo('documentacion')"><div class="module-icon">≡</div><strong>Documentación técnica</strong><span>Manuales, esquemas, referencias e instrucciones.</span><span class="soon">Preparado para desarrollar</span></div>
+   <div class="module-card" onclick="document.getElementById('locationsPanel').scrollIntoView({behavior:'smooth'})"><div class="module-icon">⌂</div><strong>Locales y salas</strong><span>Acceso al expediente operativo de las 19 salas.</span></div>
+  </div>
+
   <div class="panel">
    <div class="panel-header"><h2>Necesita mi atención</h2></div>
    <div id="attentionList"></div>
   </div>
 
-  <div class="panel">
+  <div class="panel" id="locationsPanel">
    <div class="panel-header"><h2>Estado de locales</h2></div>
    <div class="locations">
     ${["Terrassa","Sabadell","Barcelona","Esplugues"].map(crearTarjetaLocal).join("")}
@@ -961,12 +936,13 @@ function crearTarjetaLocal(local){
 ===================================================== */
 
 function mostrarOperaciones(){
+ abrirArea("operaciones");
  vistaActual="operaciones";localActual=null;salaActual=null;
  actualizarMenuActivo("menuOperaciones");
 
  document.getElementById("mainContent").innerHTML=`
   <div class="header">
-   <div><h1>Operaciones</h1><p>Todas las tareas activas de Elements</p></div>
+   <div><div class="eyebrow">Elements · Operaciones</div><h1>Tareas de mantenimiento</h1><p>Averías, revisiones, reparaciones y mejoras técnicas</p></div>
    <button class="btn btn-primary" onclick="abrirNuevaTarea()">+ Nueva tarea</button>
   </div>
 
@@ -1041,6 +1017,7 @@ function aplicarFiltros(){
 ===================================================== */
 
 function mostrarLocal(local){
+ abrirArea("operaciones");
  vistaActual="local";localActual=local;salaActual=null;
  actualizarMenuActivo("menu"+local);
 
@@ -1105,6 +1082,7 @@ function crearSala(local,sala){
 ===================================================== */
 
 function mostrarSala(local,sala){
+ abrirArea("operaciones");
  vistaActual="sala";localActual=local;salaActual=sala;
  actualizarMenuActivo("menu"+local);
 
@@ -1212,14 +1190,16 @@ function mostrarHistorial(){
 ===================================================== */
 
 function mostrarProyectos(){
+ abrirArea("operaciones");
  vistaActual="proyectos";localActual=null;salaActual=null;
  actualizarMenuActivo("menuProyectos");
 
  document.getElementById("mainContent").innerHTML=`
   <div class="header">
    <div>
-    <h1>Proyectos</h1>
-    <p>Mejoras y proyectos operativos de medio/largo plazo</p>
+    <div class="eyebrow">Elements · Operaciones</div>
+    <h1>Proyectos / mejoras</h1>
+    <p>Trabajos operativos de medio y largo plazo</p>
    </div>
   </div>
 
@@ -1233,11 +1213,48 @@ function mostrarProyectos(){
 }
 
 /* =====================================================
+   MÓDULOS DE OPERACIONES - BASE
+===================================================== */
+
+const modulosBase={
+ preventivo:{menu:"menuPreventivo",titulo:"Mantenimiento preventivo",desc:"Revisiones programadas, periodicidades y checklists por sala.",icono:"↻"},
+ stock:{menu:"menuStock",titulo:"Stock / almacén",desc:"Control de recambios, consumibles, cantidades mínimas y ubicación del material.",icono:"▦"},
+ proveedores:{menu:"menuProveedores",titulo:"Proveedores",desc:"Proveedores y pedidos: pendiente de pedir, en proceso y entregado.",icono:"◇"},
+ personal:{menu:"menuPersonal",titulo:"Personal operativo",desc:"Estructura operativa, responsables y relación de personas con locales y salas.",icono:"◎"},
+ documentacion:{menu:"menuDocumentacion",titulo:"Documentación técnica",desc:"Manuales, esquemas, referencias, fotografías e instrucciones técnicas de las salas.",icono:"≡"},
+ clientes:{menu:"menuClientes",titulo:"Atención al cliente",desc:"Área independiente de Elements para incidencias y seguimiento de situaciones con clientes.",icono:"◌"},
+ rrhh:{menu:"menuRRHH",titulo:"RRHH",desc:"Área independiente para la gestión de personas, formación y procesos de recursos humanos.",icono:"◉"}
+};
+
+function mostrarModulo(clave){
+ const m=modulosBase[clave];if(!m)return;
+ abrirArea(clave==="clientes"?"atc":clave==="rrhh"?"rrhh":"operaciones");
+ vistaActual="modulo:"+clave;localActual=null;salaActual=null;
+ actualizarMenuActivo(m.menu);
+ document.getElementById("mainContent").innerHTML=`
+  <div class="header"><div><div class="eyebrow">${clave==="clientes"||clave==="rrhh"?"Elements":"Elements · Operaciones"}</div><h1>${m.titulo}</h1><p>${m.desc}</p></div></div>
+  <div class="panel"><div class="empty"><div style="font-size:28px;color:var(--gold);margin-bottom:12px">${m.icono}</div><strong style="color:#ddd6c9">Módulo preparado</strong><br><br>La estructura ya forma parte del sistema. Lo desarrollaremos sin tener que reorganizar de nuevo la aplicación.</div></div>`;
+}
+
+function mostrarCompras(){
+ abrirArea("operaciones");
+ vistaActual="compras";localActual=null;salaActual=null;actualizarMenuActivo("menuCompras");
+ const lista=activas().filter(t=>t.tipo==="compra");
+ document.getElementById("mainContent").innerHTML=`
+  <div class="header"><div><div class="eyebrow">Elements · Operaciones</div><h1>Compras</h1><p>Necesidades de compra registradas actualmente</p></div><button class="btn btn-primary" onclick="abrirNuevaTarea()">+ Nueva compra</button></div>
+  <div class="cards"><div class="card"><div class="number">${lista.length}</div><div class="label">Compras pendientes</div></div><div class="card"><div class="number">${lista.filter(t=>t.prioridad==="urgente").length}</div><div class="label">Urgentes</div></div><div class="card"><div class="number">${lista.filter(estaVencida).length}</div><div class="label">Fuera de plazo</div></div><div class="card"><div class="number">${lista.filter(t=>t.estado==="bloqueada").length}</div><div class="label">Bloqueadas</div></div></div>
+  <div class="panel"><div class="panel-header"><h2>Pendientes de compra</h2></div><div id="comprasList"></div></div>`;
+ renderListaTareas(lista,"comprasList");
+}
+
+/* =====================================================
    RENDER SEGÚN VISTA
 ===================================================== */
 
 function renderVistaActual(){
  if(vistaActual==="operaciones")mostrarOperaciones();
+ else if(vistaActual==="compras")mostrarCompras();
+ else if(vistaActual.startsWith("modulo:"))mostrarModulo(vistaActual.split(":")[1]);
  else if(vistaActual==="local" && localActual)mostrarLocal(localActual);
  else if(vistaActual==="sala" && localActual && salaActual)mostrarSala(localActual,salaActual);
  else if(vistaActual==="misTareas")mostrarMisTareas();
