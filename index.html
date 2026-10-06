@@ -28,9 +28,13 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app-shell{displ
 
 .company-title{padding:7px 8px 22px;border-bottom:1px solid #242830;margin-bottom:18px}.company-title h1{margin:0;color:#f3eee3;font-size:19px;line-height:1.15;letter-spacing:.4px}.company-title span{display:block;color:var(--gold);font-size:9px;letter-spacing:1.7px;text-transform:uppercase;margin-bottom:7px;font-weight:850}
 .area-menu{margin:7px 0}.area-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 12px;background:#171a1f;border:1px solid #2b3037;border-radius:11px;color:#e9e3d7;font-size:12px;font-weight:850;letter-spacing:.8px;cursor:pointer;transition:.15s}.area-toggle:hover,.area-toggle.open{border-color:rgba(198,161,91,.42);background:linear-gradient(90deg,rgba(198,161,91,.13),#171a1f)}.area-arrow{color:var(--gold2);font-size:12px;transition:transform .18s}.area-toggle.open .area-arrow{transform:rotate(90deg)}.area-children{display:none;padding:6px 0 7px 10px;border-left:1px solid #2c3036;margin-left:10px}.area-children.open{display:block}.area-children .menu-item{font-size:12px;padding:9px 10px}.area-placeholder{padding:10px 11px;color:#6f7680;font-size:11px;line-height:1.45}.sidebar-spacer{height:8px}
+
+.calendar-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}.calendar-title{text-transform:capitalize;font-size:18px;font-weight:800}.calendar-nav{display:flex;gap:8px}.calendar-weekdays,.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr)}.calendar-weekdays div{padding:9px 7px;text-align:center;color:#7f8791;font-size:10px;font-weight:850;letter-spacing:.7px;text-transform:uppercase}.calendar-grid{border-left:1px solid var(--border);border-top:1px solid var(--border);border-radius:10px;overflow:hidden}.calendar-day{min-height:112px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:8px;background:#14171b}.calendar-day.outside{background:#101216;color:#555c65}.calendar-day.today{box-shadow:inset 0 0 0 1px rgba(198,161,91,.65)}.calendar-number{font-size:11px;font-weight:800;color:#9da4ad;margin-bottom:7px}.calendar-day.today .calendar-number{color:var(--gold2)}.calendar-event{display:block;width:100%;border:0;text-align:left;margin:4px 0;padding:6px 7px;border-radius:6px;background:#22272e;color:#ddd;font-size:10px;line-height:1.25;cursor:pointer;border-left:2px solid var(--gold)}.calendar-event:hover{background:#2a3038}.calendar-event.compra{border-left-color:var(--blue)}.calendar-event.mejora{border-left-color:var(--green)}.calendar-event.averia{border-left-color:var(--red)}.calendar-event.revisar{border-left-color:var(--orange)}.calendar-event.tarea{border-left-color:#aaa}.calendar-legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;color:var(--muted);font-size:10px}.calendar-legend span:before{content:'•';color:var(--gold);margin-right:5px}.calendar-more{font-size:9px;color:var(--muted);padding:3px 2px}.calendar-empty-note{color:var(--muted);font-size:11px;margin-top:12px}
 @media(max-width:1100px){.cards,.locations{grid-template-columns:repeat(2,1fr)}.rooms,.module-grid{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:760px){.sidebar{position:relative;width:100%;height:auto;max-height:none;padding:16px}.brand{display:flex;align-items:center;gap:12px;padding-bottom:14px}.brand-mark{margin:0;width:36px;height:36px}.brand-sub{display:none}.section-title{margin-top:16px}.menu-item{padding:9px 10px}.menu-indent{padding-left:20px}.main{margin-left:0;padding:24px 16px 60px}.cards,.locations,.rooms,.module-grid,.alert-grid{grid-template-columns:1fr 1fr}.filters{grid-template-columns:1fr 1fr}.header{align-items:center}.header h1{font-size:25px}.form-grid,.detail-grid{grid-template-columns:1fr}.form-full{grid-column:auto}}
 @media(max-width:480px){.cards,.locations,.rooms,.module-grid,.alert-grid,.filters{grid-template-columns:1fr}.main{padding-top:20px}}
+
+.segmented{display:flex;gap:7px;flex-wrap:wrap}.segmented button{flex:1;min-width:105px;border:1px solid #353b44;background:#111419;color:#c5cad1;padding:9px 10px;border-radius:8px}.segmented button.active{border-color:#c8a45e;background:rgba(198,161,91,.16);color:var(--gold2)}.record-card{border:1px solid var(--border);background:#15181c;border-radius:11px;padding:15px;margin-bottom:10px}.record-card:last-child{margin-bottom:0}.record-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.record-title{font-weight:750}.record-meta{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.5}.record-body{margin-top:10px;font-size:12.5px;line-height:1.55;color:#d8dce2;white-space:pre-wrap}.pill{display:inline-block;border:1px solid #363c45;border-radius:20px;padding:4px 7px;font-size:9px;font-weight:800;color:#c7ccd3;margin-right:4px}.pill.ok{color:#7dd0a5;border-color:#28513f;background:#14251e}.pill.bad{color:#f39a9a;border-color:#573036;background:#2a181b}.pill.wait{color:#e7c36f;border-color:#554726;background:#2b2517}.atc-choice{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}.atc-choice .module-card{margin:0}@media(max-width:760px){.atc-choice{grid-template-columns:1fr}}
 </style>
 </head>
 
@@ -55,13 +59,13 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app-shell{displ
   <div class="area-children open" id="areaOperaciones">
    <div class="menu-item active" id="menuDashboard" onclick="mostrarDashboard()">◈ Panel de operaciones</div>
    <div class="menu-item" id="menuOperaciones" onclick="mostrarOperaciones()">✓ Tareas de mantenimiento</div>
-   <div class="menu-item" id="menuPreventivo" onclick="mostrarModulo('preventivo')">↻ Mantenimiento preventivo</div>
    <div class="menu-item" id="menuCompras" onclick="mostrarCompras()">▣ Compras</div>
-   <div class="menu-item" id="menuStock" onclick="mostrarModulo('stock')">▦ Stock / almacén</div>
-   <div class="menu-item" id="menuProveedores" onclick="mostrarModulo('proveedores')">◇ Proveedores</div>
-   <div class="menu-item" id="menuPersonal" onclick="mostrarModulo('personal')">◎ Personal operativo</div>
-   <div class="menu-item" id="menuProyectos" onclick="mostrarProyectos()">▤ Proyectos / mejoras</div>
-   <div class="menu-item" id="menuDocumentacion" onclick="mostrarModulo('documentacion')">≡ Documentación técnica</div>
+   <div class="menu-item" id="menuStock" onclick="mostrarStock()">▦ Stock / almacén</div>
+   <div class="menu-item" id="menuProveedores" onclick="mostrarProveedores()">◇ Proveedores</div>
+   <div class="menu-item" id="menuProyectos" onclick="mostrarProyectos()">△ Proyectos / mejoras</div>
+   <div class="menu-item" id="menuEncargados" onclick="mostrarEncargados()">◎ Encargados</div>
+   <div class="menu-item" id="menuCalendario" onclick="mostrarCalendario()">□ Calendario</div>
+   <div class="menu-item" id="menuDocumentacion" onclick="mostrarDocumentacion()">≡ Documentación técnica</div>
    <div class="section-title">LOCALES Y SALAS</div>
    <div class="menu-item menu-indent" id="menuTerrassa" onclick="mostrarLocal('Terrassa')">Terrassa</div>
    <div class="menu-item menu-indent" id="menuSabadell" onclick="mostrarLocal('Sabadell')">Sabadell</div>
@@ -73,8 +77,13 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app-shell{displ
  <div class="area-menu">
   <div class="area-toggle" id="toggleATC" onclick="toggleArea('atc')"><span>ATC</span><span class="area-arrow">›</span></div>
   <div class="area-children" id="areaATC">
-   <div class="menu-item" id="menuClientes" onclick="mostrarModulo('clientes')">◌ Panel ATC</div>
-   <div class="area-placeholder">Aquí iremos añadiendo los apartados de Atención al Cliente.</div>
+   <div class="menu-item" id="menuClientes" onclick="mostrarATCPanel()">◌ Panel ATC</div>
+   <div class="menu-item" id="menuATCUltimaHora" onclick="mostrarATCUltimaHora()">⚡ Sesiones de última hora</div>
+   <div class="menu-item" id="menuATCCanceladas" onclick="mostrarATCCanceladas()">↻ Canceladas / aplazadas</div>
+   <div class="menu-item" id="menuATCConversaciones" onclick="mostrarATCConversaciones()">↗ Conversaciones / futuribles</div>
+   <div class="menu-item" id="menuATCExtraordinarias" onclick="mostrarATCExtraordinarias()">! Situaciones extraordinarias</div>
+   <div class="menu-item" id="menuATCProtocolos" onclick="mostrarModulo('atcProtocolos')">≡ Protocolos / respuestas</div>
+   <div class="menu-item" id="menuATCSalas" onclick="mostrarModulo('atcSalas')">⌂ Información de salas</div>
   </div>
  </div>
 
@@ -82,41 +91,47 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app-shell{displ
   <div class="area-toggle" id="toggleRRHH" onclick="toggleArea('rrhh')"><span>RRHH</span><span class="area-arrow">›</span></div>
   <div class="area-children" id="areaRRHH">
    <div class="menu-item" id="menuRRHH" onclick="mostrarModulo('rrhh')">◉ Panel RRHH</div>
-   <div class="area-placeholder">Aquí iremos añadiendo los apartados de Recursos Humanos.</div>
+   <div class="menu-item" id="menuRRHHPersonal" onclick="mostrarModulo('rrhhPersonal')">◎ Personal</div>
+   <div class="menu-item" id="menuRRHHFormacion" onclick="mostrarModulo('rrhhFormacion')">✓ Formación / salas habilitadas</div>
+   <div class="menu-item" id="menuRRHHDisponibilidad" onclick="mostrarModulo('rrhhDisponibilidad')">□ Disponibilidad</div>
+   <div class="menu-item" id="menuRRHHNecesidades" onclick="mostrarModulo('rrhhNecesidades')">! Necesidades de personal</div>
+   <div class="menu-item" id="menuRRHHSeguimiento" onclick="mostrarModulo('rrhhSeguimiento')">◌ Seguimiento</div>
+   <div class="menu-item" id="menuRRHHAltas" onclick="mostrarModulo('rrhhAltas')">+ Incorporaciones / bajas</div>
   </div>
  </div>
 
  <div class="sidebar-spacer"></div>
- <div class="new-task" onclick="abrirNuevaTarea()">+ Nueva tarea</div>
+ <div class="new-task" id="contextAdd" onclick="abrirNuevaTarea()">+ Añadir</div>
  <div class="user-box" id="userBox"></div>
 </div>
 
 <div class="main" id="mainContent"></div>
 
-<!-- MODAL CREAR / EDITAR -->
+<!-- MODAL AÑADIR / EDITAR OPERACIONES -->
 <div class="modal" id="taskModal">
  <div class="modal-content">
   <div class="modal-header">
-   <h2 id="formTitle">Nueva tarea</h2>
+   <h2 id="formTitle">Añadir</h2>
    <div class="close" onclick="cerrarModal('taskModal')">×</div>
   </div>
 
   <input type="hidden" id="editId">
+  <input type="hidden" id="responsableTipo" value="encargado">
 
   <div class="form-grid">
-
    <div>
     <label>TIPO</label>
-    <select id="tipo">
+    <select id="tipo" onchange="actualizarFormularioOperaciones()">
      <option value="averia">Avería</option>
      <option value="revisar">Revisar</option>
-     <option value="compra">Compra</option>
      <option value="tarea">Tarea</option>
+     <option value="compra">Compra</option>
      <option value="mejora">Mejora</option>
+     <option value="documentacion">Documentación técnica</option>
     </select>
    </div>
 
-   <div>
+   <div id="prioridadWrap">
     <label>PRIORIDAD</label>
     <select id="prioridad">
      <option value="normal">Normal</option>
@@ -138,9 +153,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app-shell{displ
 
    <div>
     <label>SALA</label>
-    <select id="sala">
-     <option value="">Selecciona primero el local</option>
-    </select>
+    <select id="sala"><option value="">Selecciona primero el local</option></select>
    </div>
 
    <div class="form-full">
@@ -148,17 +161,31 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app-shell{displ
     <input id="titulo" placeholder="Ej: Sensor puerta final no funciona">
    </div>
 
-   <div>
-    <label>RESPONSABLE</label>
-    <input id="responsable" placeholder="Ej: Eudald, encargado, proveedor...">
+   <div class="form-full" id="responsableWrap">
+    <label>PERSONA / RESPONSABLE</label>
+    <div class="segmented" id="responsableTabs">
+     <button type="button" data-resp="eudald" onclick="seleccionarResponsable('eudald')">Eudald</button>
+     <button type="button" data-resp="encargado" class="active" onclick="seleccionarResponsable('encargado')">Encargado</button>
+     <button type="button" data-resp="socio" onclick="seleccionarResponsable('socio')">Socio</button>
+     <button type="button" data-resp="proveedor" onclick="seleccionarResponsable('proveedor')">Proveedor</button>
+    </div>
+    <div id="socioWrap" style="display:none;margin-top:10px">
+     <select id="socioNombre">
+      <option value="">Seleccionar socio...</option>
+      <option>Ricardo</option><option>Marc Balada</option><option>Marc Velasco</option><option>Marc Ribes</option><option>Edu</option>
+     </select>
+    </div>
+    <div id="proveedorNombreWrap" style="display:none;margin-top:10px">
+     <input id="proveedorNombre" placeholder="Nombre del proveedor">
+    </div>
    </div>
 
-   <div>
-    <label>FECHA LÍMITE</label>
+   <div id="fechaWrap">
+    <label>DÍA PREVISTO DE EJECUCIÓN <span style="font-weight:500;color:#707781">(opcional)</span></label>
     <input id="fecha" type="date">
    </div>
 
-   <div>
+   <div id="estadoWrap">
     <label>ESTADO</label>
     <select id="estado" onchange="mostrarCampoBloqueo()">
      <option value="pendiente">Pendiente</option>
@@ -181,15 +208,41 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}.app-shell{displ
    </div>
 
    <div class="form-full">
-    <label>NOTAS</label>
+    <label id="notasLabel">NOTAS / DESCRIPCIÓN</label>
     <textarea id="notas" placeholder="Qué ocurre, qué se ha probado, información útil..."></textarea>
    </div>
-
   </div>
 
   <div class="form-actions">
    <button class="btn" onclick="cerrarModal('taskModal')">Cancelar</button>
    <button class="btn btn-primary" onclick="guardarTarea()">Guardar</button>
+  </div>
+ </div>
+</div>
+
+<!-- MODAL AÑADIR ATC -->
+<div class="modal" id="atcModal">
+ <div class="modal-content modal-large">
+  <div class="modal-header">
+   <h2 id="atcFormTitle">Añadir en ATC</h2>
+   <div class="close" onclick="cerrarModal('atcModal')">×</div>
+  </div>
+  <input type="hidden" id="atcEditId">
+  <div class="form-grid">
+   <div class="form-full">
+    <label>TIPO DE REGISTRO</label>
+    <select id="atcTipo" onchange="renderATCForm()">
+     <option value="ultima_hora">Sesión de última hora</option>
+     <option value="cancelada_aplazada">Sesión cancelada / aplazada</option>
+     <option value="conversacion">Conversación a medias / futurible reserva</option>
+     <option value="extraordinaria">Situación extraordinaria</option>
+    </select>
+   </div>
+  </div>
+  <div id="atcDynamicForm"></div>
+  <div class="form-actions">
+   <button class="btn" onclick="cerrarModal('atcModal')">Cancelar</button>
+   <button class="btn btn-primary" onclick="guardarATC()">Guardar</button>
   </div>
  </div>
 </div>
@@ -519,7 +572,7 @@ function actualizarMenuActivo(id){
 ===================================================== */
 
 function abrirNuevaTarea(local=null,sala=null){
- document.getElementById("formTitle").textContent="Nueva tarea";
+ document.getElementById("formTitle").textContent="Añadir";
  document.getElementById("editId").value="";
  limpiarFormulario();
 
@@ -848,7 +901,7 @@ function mostrarDashboard(){
     <h1>Panel de operaciones</h1>
     <p>Estado general de mantenimiento y actividad operativa</p>
    </div>
-   <button class="btn btn-primary" onclick="abrirNuevaTarea()">+ Nueva tarea</button>
+   <button class="btn btn-primary" onclick="abrirNuevaTarea()">+ Añadir</button>
   </div>
 
   <div class="cards">
@@ -877,13 +930,12 @@ function mostrarDashboard(){
 
   <div class="module-grid">
    <div class="module-card" onclick="mostrarOperaciones()"><div class="module-icon">✓</div><strong>Tareas de mantenimiento</strong><span>Averías, revisiones, reparaciones y mejoras técnicas.</span></div>
-   <div class="module-card" onclick="mostrarModulo('preventivo')"><div class="module-icon">↻</div><strong>Mantenimiento preventivo</strong><span>Revisiones periódicas y checklists por sala.</span><span class="soon">Preparado para desarrollar</span></div>
    <div class="module-card" onclick="mostrarCompras()"><div class="module-icon">▣</div><strong>Compras</strong><span>Necesidades de compra y seguimiento de material.</span></div>
-   <div class="module-card" onclick="mostrarModulo('stock')"><div class="module-icon">▦</div><strong>Stock / almacén</strong><span>Recambios, consumibles, mínimos y ubicaciones.</span><span class="soon">Preparado para desarrollar</span></div>
-   <div class="module-card" onclick="mostrarModulo('proveedores')"><div class="module-icon">◇</div><strong>Proveedores</strong><span>Pedidos por proveedor: solicitado, en proceso y entregado.</span><span class="soon">Preparado para desarrollar</span></div>
-   <div class="module-card" onclick="mostrarModulo('personal')"><div class="module-icon">◎</div><strong>Personal operativo</strong><span>Responsables y estructura operativa de los locales.</span><span class="soon">Preparado para desarrollar</span></div>
-   <div class="module-card" onclick="mostrarProyectos()"><div class="module-icon">▤</div><strong>Proyectos / mejoras</strong><span>Trabajos de medio y largo plazo separados del día a día.</span></div>
-   <div class="module-card" onclick="mostrarModulo('documentacion')"><div class="module-icon">≡</div><strong>Documentación técnica</strong><span>Manuales, esquemas, referencias e instrucciones.</span><span class="soon">Preparado para desarrollar</span></div>
+   <div class="module-card" onclick="mostrarStock()"><div class="module-icon">▦</div><strong>Stock / almacén</strong><span>Inventario organizado por local y sala.</span></div>
+   <div class="module-card" onclick="mostrarProveedores()"><div class="module-icon">◇</div><strong>Proveedores</strong><span>Pendientes por proveedor, sala y estado.</span></div>
+   <div class="module-card" onclick="mostrarEncargados()"><div class="module-icon">◎</div><strong>Encargados</strong><span>Seguimiento operativo de personal por local.</span></div>
+   <div class="module-card" onclick="mostrarCalendario()"><div class="module-icon">□</div><strong>Calendario</strong><span>Citas, tareas concretas, visitas y anotaciones.</span></div>
+   <div class="module-card" onclick="mostrarDocumentacion()"><div class="module-icon">≡</div><strong>Documentación técnica</strong><span>Contraseñas, incidencias raras y soluciones por sala.</span></div>
    <div class="module-card" onclick="document.getElementById('locationsPanel').scrollIntoView({behavior:'smooth'})"><div class="module-icon">⌂</div><strong>Locales y salas</strong><span>Acceso al expediente operativo de las 19 salas.</span></div>
   </div>
 
@@ -943,7 +995,7 @@ function mostrarOperaciones(){
  document.getElementById("mainContent").innerHTML=`
   <div class="header">
    <div><div class="eyebrow">Elements · Operaciones</div><h1>Tareas de mantenimiento</h1><p>Averías, revisiones, reparaciones y mejoras técnicas</p></div>
-   <button class="btn btn-primary" onclick="abrirNuevaTarea()">+ Nueva tarea</button>
+   <button class="btn btn-primary" onclick="abrirNuevaTarea()">+ Añadir</button>
   </div>
 
   <div class="panel">
@@ -975,8 +1027,8 @@ function mostrarOperaciones(){
      <option value="bloqueada">Bloqueada</option>
     </select>
     <select id="fPlazo" onchange="aplicarFiltros()">
-     <option value="">Cualquier plazo</option>
-     <option value="vencida">Vencidas</option>
+     <option value="">Cualquier fecha</option>
+     <option value="vencida">Fecha pasada</option>
     </select>
    </div>
 
@@ -1029,7 +1081,7 @@ function mostrarLocal(local){
     <h1>${local}</h1>
     <p>${salas[local].length} salas · Control operativo</p>
    </div>
-   <button class="btn btn-primary" onclick="abrirNuevaTarea('${local}')">+ Nueva tarea</button>
+   <button class="btn btn-primary" onclick="abrirNuevaTarea('${local}')">+ Añadir</button>
   </div>
 
   <div class="cards">
@@ -1097,7 +1149,7 @@ function mostrarSala(local,sala){
     <h1>${escaparHTML(sala)}</h1>
     <p>Ficha operativa de sala</p>
    </div>
-   <button class="btn btn-primary" onclick="abrirNuevaTarea('${local}','${sala.replaceAll("'","\\'")}')">+ Nueva tarea</button>
+   <button class="btn btn-primary" onclick="abrirNuevaTarea('${local}','${sala.replaceAll("'","\\'")}')">+ Añadir</button>
   </div>
 
   <div class="cards">
@@ -1137,13 +1189,13 @@ function mostrarMisTareas(){
  document.getElementById("mainContent").innerHTML=`
   <div class="header">
    <div><h1>Mis tareas</h1><p>Tareas activas asignadas a Eudald</p></div>
-   <button class="btn btn-primary" onclick="abrirNuevaTarea()">+ Nueva tarea</button>
+   <button class="btn btn-primary" onclick="abrirNuevaTarea()">+ Añadir</button>
   </div>
 
   <div class="cards">
    <div class="card"><div class="number">${mias.length}</div><div class="label">Asignadas</div></div>
    <div class="card"><div class="number">${mias.filter(t=>t.prioridad==="urgente").length}</div><div class="label">Urgentes</div></div>
-   <div class="card"><div class="number">${mias.filter(estaVencida).length}</div><div class="label">Vencidas</div></div>
+   <div class="card"><div class="number">${mias.filter(estaVencida).length}</div><div class="label">Fecha pasada</div></div>
    <div class="card"><div class="number">${mias.filter(t=>t.estado==="bloqueada").length}</div><div class="label">Bloqueadas</div></div>
   </div>
 
@@ -1186,53 +1238,87 @@ function mostrarHistorial(){
 }
 
 /* =====================================================
-   PROYECTOS - BASE
-===================================================== */
-
-function mostrarProyectos(){
- abrirArea("operaciones");
- vistaActual="proyectos";localActual=null;salaActual=null;
- actualizarMenuActivo("menuProyectos");
-
- document.getElementById("mainContent").innerHTML=`
-  <div class="header">
-   <div>
-    <div class="eyebrow">Elements · Operaciones</div>
-    <h1>Proyectos / mejoras</h1>
-    <p>Trabajos operativos de medio y largo plazo</p>
-   </div>
-  </div>
-
-  <div class="panel">
-   <div class="empty">
-    Este módulo está preparado para la siguiente fase.<br><br>
-    Aquí separaremos los proyectos de las incidencias del día a día.
-   </div>
-  </div>
- `;
-}
-
-/* =====================================================
    MÓDULOS DE OPERACIONES - BASE
 ===================================================== */
 
 const modulosBase={
- preventivo:{menu:"menuPreventivo",titulo:"Mantenimiento preventivo",desc:"Revisiones programadas, periodicidades y checklists por sala.",icono:"↻"},
- stock:{menu:"menuStock",titulo:"Stock / almacén",desc:"Control de recambios, consumibles, cantidades mínimas y ubicación del material.",icono:"▦"},
- proveedores:{menu:"menuProveedores",titulo:"Proveedores",desc:"Proveedores y pedidos: pendiente de pedir, en proceso y entregado.",icono:"◇"},
- personal:{menu:"menuPersonal",titulo:"Personal operativo",desc:"Estructura operativa, responsables y relación de personas con locales y salas.",icono:"◎"},
- documentacion:{menu:"menuDocumentacion",titulo:"Documentación técnica",desc:"Manuales, esquemas, referencias, fotografías e instrucciones técnicas de las salas.",icono:"≡"},
- clientes:{menu:"menuClientes",titulo:"Atención al cliente",desc:"Área independiente de Elements para incidencias y seguimiento de situaciones con clientes.",icono:"◌"},
- rrhh:{menu:"menuRRHH",titulo:"RRHH",desc:"Área independiente para la gestión de personas, formación y procesos de recursos humanos.",icono:"◉"}
+ clientes:{menu:"menuClientes",titulo:"Panel ATC",desc:"Vista de lo que Atención al Cliente tiene pendiente y necesita seguimiento.",icono:"◌",area:"atc"},
+ atcIncidencias:{menu:"menuATCIncidencias",titulo:"Incidencias de clientes",desc:"Casos abiertos, resolución, responsable y conexión con Operaciones.",icono:"!",area:"atc"},
+ atcContactos:{menu:"menuATCContactos",titulo:"Pendientes de contactar",desc:"Llamadas, WhatsApps y correos pendientes con responsable y fecha.",icono:"↗",area:"atc"},
+ atcDevoluciones:{menu:"menuATCDevoluciones",titulo:"Devoluciones / compensaciones",desc:"Importe, motivo, autorización y estado de cada devolución o compensación.",icono:"€",area:"atc"},
+ atcReservas:{menu:"menuATCReservas",titulo:"Reservas especiales",desc:"Información operativa necesaria para próximas sesiones especiales.",icono:"◇",area:"atc"},
+ atcProtocolos:{menu:"menuATCProtocolos",titulo:"Protocolos / respuestas",desc:"Respuestas aprobadas y procedimientos para situaciones habituales de ATC.",icono:"≡",area:"atc"},
+ atcSalas:{menu:"menuATCSalas",titulo:"Información de salas",desc:"Ficha rápida para ATC: idiomas, edades, jugadores, accesibilidad y puntos importantes.",icono:"⌂",area:"atc"},
+ rrhh:{menu:"menuRRHH",titulo:"Panel RRHH",desc:"Vista general de personas, formación, disponibilidad y necesidades de personal.",icono:"◉",area:"rrhh"},
+ rrhhPersonal:{menu:"menuRRHHPersonal",titulo:"Personal",desc:"Ficha laboral operativa de cada trabajador y local habitual.",icono:"◎",area:"rrhh"},
+ rrhhFormacion:{menu:"menuRRHHFormacion",titulo:"Formación / salas habilitadas",desc:"Matriz de trabajadores y salas que pueden llevar de forma autónoma o en formación.",icono:"✓",area:"rrhh"},
+ rrhhDisponibilidad:{menu:"menuRRHHDisponibilidad",titulo:"Disponibilidad",desc:"Disponibilidad habitual, restricciones y horas objetivo para preparar cuadrantes.",icono:"□",area:"rrhh"},
+ rrhhNecesidades:{menu:"menuRRHHNecesidades",titulo:"Necesidades de personal",desc:"Faltas o excesos de cobertura por local, franja y sala.",icono:"!",area:"rrhh"},
+ rrhhSeguimiento:{menu:"menuRRHHSeguimiento",titulo:"Seguimiento",desc:"Seguimiento interno de situaciones laborales con permisos restringidos.",icono:"◌",area:"rrhh"},
+ rrhhAltas:{menu:"menuRRHHAltas",titulo:"Incorporaciones / bajas",desc:"Checklist de accesos, formación, documentación y material.",icono:"+",area:"rrhh"}
 };
+
+function tarjetasSalasModulo(accion){
+ return ["Terrassa","Sabadell","Barcelona","Esplugues"].map(local=>`<div class="panel"><div class="panel-header"><h2>${local}</h2></div><div class="module-grid">${salas[local].map(sala=>`<div class="module-card" onclick="${accion}('${local}',${JSON.stringify(sala).replace(/"/g,'&quot;')})"><div class="module-icon">⌂</div><strong>${sala}</strong><span>Abrir ficha</span></div>`).join("")}</div></div>`).join("");
+}
+
+function mostrarStock(){
+ abrirArea("operaciones"); vistaActual="stock"; localActual=null; salaActual=null; actualizarMenuActivo("menuStock");
+ document.getElementById("mainContent").innerHTML=`<div class="header"><div><div class="eyebrow">Elements · Operaciones</div><h1>Stock / almacén</h1><p>Selecciona una sala para consultar su inventario, recambios y faltantes.</p></div></div>${tarjetasSalasModulo('abrirFichaStock')}`;
+}
+function abrirFichaStock(local,sala){
+ document.getElementById("mainContent").innerHTML=`<div class="header"><div><div class="eyebrow">Stock · ${local}</div><h1>${sala}</h1><p>Inventario y necesidades de esta sala</p></div><button class="btn" onclick="mostrarStock()">← Volver</button></div><div class="panel"><div class="panel-header"><h2>Inventario</h2><button class="btn btn-primary" onclick="alert('Siguiente paso: conectaremos el inventario compartido a Supabase')">+ Añadir material</button></div><div class="empty">Aquí aparecerán material, cantidad disponible, mínimo deseado, ubicación y observaciones.<br><br>La estructura visual ya está preparada; conectaremos los datos compartidos a Supabase en el siguiente paso.</div></div>`;
+}
+function mostrarDocumentacion(){
+ abrirArea("operaciones"); vistaActual="documentacion"; localActual=null; salaActual=null; actualizarMenuActivo("menuDocumentacion");
+ document.getElementById("mainContent").innerHTML=`<div class="header"><div><div class="eyebrow">Elements · Operaciones</div><h1>Documentación técnica</h1><p>Conocimiento técnico organizado por local y sala.</p></div></div>${tarjetasSalasModulo('abrirFichaDocumentacion')}`;
+}
+function abrirFichaDocumentacion(local,sala){
+ document.getElementById("mainContent").innerHTML=`<div class="header"><div><div class="eyebrow">Documentación · ${local}</div><h1>${sala}</h1><p>Información técnica y soluciones conocidas</p></div><button class="btn" onclick="mostrarDocumentacion()">← Volver</button></div><div class="module-grid"><div class="module-card"><div class="module-icon">⌘</div><strong>Accesos / contraseñas</strong><span>Claves y accesos técnicos con permisos adecuados.</span></div><div class="module-card"><div class="module-icon">!</div><strong>Cosas raras que pasan</strong><span>Comportamientos conocidos y cómo identificarlos.</span></div><div class="module-card"><div class="module-icon">✓</div><strong>Soluciones</strong><span>Procedimientos que ya han funcionado.</span></div><div class="module-card"><div class="module-icon">≡</div><strong>Manuales / referencias</strong><span>Equipos, modelos, esquemas y documentación.</span></div></div>`;
+}
+function mostrarProveedores(){
+ abrirArea("operaciones"); vistaActual="proveedores"; localActual=null; salaActual=null; actualizarMenuActivo("menuProveedores");
+ document.getElementById("mainContent").innerHTML=`<div class="header"><div><div class="eyebrow">Elements · Operaciones</div><h1>Proveedores</h1><p>Trabajos y pedidos pendientes de proveedores externos.</p></div><button class="btn btn-primary" onclick="document.getElementById('proveedorForm').style.display='block'">+ Nuevo pendiente</button></div><div class="panel" id="proveedorForm" style="display:none"><div class="panel-header"><h2>Nuevo pendiente de proveedor</h2></div><div class="form-grid"><div class="form-group"><label>Proveedor</label><input placeholder="Nombre del proveedor"></div><div class="form-group"><label>Local</label><select><option>Terrassa</option><option>Sabadell</option><option>Barcelona</option><option>Esplugues</option></select></div><div class="form-group"><label>Sala</label><input placeholder="Sala o ámbito general"></div><div class="form-group"><label>Estado</label><select><option>Pendiente / solicitado</option><option>En proceso</option><option>Entregado</option></select></div><div class="form-group full"><label>Título</label><input placeholder="Qué tiene que hacer o entregar"></div></div><div class="modal-actions"><button class="btn" onclick="document.getElementById('proveedorForm').style.display='none'">Cancelar</button><button class="btn btn-primary" onclick="alert('Formulario preparado. El siguiente paso será crear la tabla de proveedores en Supabase.')">Guardar</button></div></div><div class="cards"><div class="card"><div class="number">—</div><div class="label">Pendientes</div></div><div class="card"><div class="number">—</div><div class="label">En proceso</div></div><div class="card"><div class="number">—</div><div class="label">Entregados</div></div></div><div class="panel"><div class="empty">Los pendientes de proveedores aparecerán aquí agrupados por estado. Preparado para conectarlo a Supabase.</div></div>`;
+}
+function mostrarEncargados(){
+ abrirArea("operaciones"); vistaActual="encargados"; localActual=null; salaActual=null; actualizarMenuActivo("menuEncargados");
+ const responsables={Terrassa:"Por asignar",Sabadell:"Laura",Barcelona:"Jordi",Esplugues:"Gerard"};
+ document.getElementById("mainContent").innerHTML=`<div class="header"><div><div class="eyebrow">Elements · Operaciones</div><h1>Encargados</h1><p>Seguimiento operativo de cada local y su equipo.</p></div></div><div class="module-grid">${Object.entries(responsables).map(([l,n])=>`<div class="module-card" onclick="abrirEncargado('${l}','${n}')"><div class="module-icon">◎</div><strong>${l}</strong><span>Encargado/a: ${n}</span></div>`).join('')}</div>`;
+}
+function abrirEncargado(local,nombre){
+ document.getElementById("mainContent").innerHTML=`<div class="header"><div><div class="eyebrow">Encargados · ${local}</div><h1>${nombre}</h1><p>Notas y necesidades operativas del equipo</p></div><button class="btn" onclick="mostrarEncargados()">← Volver</button></div><div class="module-grid"><div class="module-card"><div class="module-icon">!</div><strong>Incidencias de trabajadores</strong><span>Situaciones que el encargado necesita dejar registradas.</span></div><div class="module-card"><div class="module-icon">−</div><strong>Falta personal</strong><span>Franjas o días con cobertura insuficiente.</span></div><div class="module-card"><div class="module-icon">+</div><strong>Sobra personal</strong><span>Franjas con más cobertura de la necesaria.</span></div><div class="module-card"><div class="module-icon">□</div><strong>Disponibilidad habitual</strong><span>Información operativa para coordinar el equipo.</span></div></div><div class="panel"><div class="empty">Este apartado alimentará después RRHH y el futuro generador de cuadrantes.</div></div>`;
+}
+let calendarioCursor=new Date();
+function mostrarCalendario(fechaBase){
+ abrirArea("operaciones"); vistaActual="calendario"; localActual=null; salaActual=null; actualizarMenuActivo("menuCalendario");
+ if(fechaBase) calendarioCursor=new Date(fechaBase.getFullYear(),fechaBase.getMonth(),1);
+ else if(!calendarioCursor || isNaN(calendarioCursor)) calendarioCursor=new Date();
+ const y=calendarioCursor.getFullYear(),m=calendarioCursor.getMonth();
+ const tituloMes=new Date(y,m,1).toLocaleDateString('es-ES',{month:'long',year:'numeric'});
+ const primer=new Date(y,m,1); const offset=(primer.getDay()+6)%7; const inicio=new Date(y,m,1-offset);
+ const tiposCalendario=["averia","revisar","tarea","compra","mejora"];
+ const eventos=tareas.filter(t=>t.estado!=="resuelto" && tiposCalendario.includes(t.tipo) && t.origen!=="documentacion" && t.fecha);
+ const hoyISOlocal=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+ let dias='';
+ for(let i=0;i<42;i++){
+  const d=new Date(inicio);d.setDate(inicio.getDate()+i);
+  const iso=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  const ev=eventos.filter(t=>t.fecha===iso);
+  const fuera=d.getMonth()!==m, hoy=iso===hoyISOlocal();
+  dias+=`<div class="calendar-day ${fuera?'outside':''} ${hoy?'today':''}"><div class="calendar-number">${d.getDate()}</div>${ev.slice(0,4).map(t=>`<button class="calendar-event ${t.tipo}" onclick="editarTarea(${t.id})" title="${escaparHTML(t.local+(t.sala?' · '+t.sala:'')+' · '+t.titulo)}"><strong>${escaparHTML(t.titulo)}</strong><br>${escaparHTML(t.local)}${t.sala?' · '+escaparHTML(t.sala):''}</button>`).join('')}${ev.length>4?`<div class="calendar-more">+ ${ev.length-4} más</div>`:''}</div>`;
+ }
+ document.getElementById("mainContent").innerHTML=`<div class="header"><div><div class="eyebrow">Elements · Operaciones</div><h1>Calendario</h1><p>Las tareas con día previsto de ejecución aparecen aquí automáticamente.</p></div><button class="btn btn-primary" onclick="abrirNuevaTarea()">+ Añadir tarea</button></div><div class="panel"><div class="calendar-toolbar"><button class="btn btn-small" onclick="moverMes(-1)">← Anterior</button><div class="calendar-title">${tituloMes}</div><div class="calendar-nav"><button class="btn btn-small" onclick="irMesActual()">Hoy</button><button class="btn btn-small" onclick="moverMes(1)">Siguiente →</button></div></div><div class="calendar-weekdays"><div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div><div>Dom</div></div><div class="calendar-grid">${dias}</div><div class="calendar-legend"><span>Averías</span><span>Revisar</span><span>Tareas</span><span>Compras</span><span>Mejoras</span></div><div class="calendar-empty-note">Una tarea sin día previsto sigue existiendo en su panel, pero no aparece en el calendario hasta que le asignes una fecha.</div></div>`;
+}
+function moverMes(delta){calendarioCursor=new Date(calendarioCursor.getFullYear(),calendarioCursor.getMonth()+delta,1);mostrarCalendario();}
+function irMesActual(){const h=new Date();calendarioCursor=new Date(h.getFullYear(),h.getMonth(),1);mostrarCalendario();}
 
 function mostrarModulo(clave){
  const m=modulosBase[clave];if(!m)return;
- abrirArea(clave==="clientes"?"atc":clave==="rrhh"?"rrhh":"operaciones");
+ abrirArea(m.area||"operaciones");
  vistaActual="modulo:"+clave;localActual=null;salaActual=null;
  actualizarMenuActivo(m.menu);
  document.getElementById("mainContent").innerHTML=`
-  <div class="header"><div><div class="eyebrow">${clave==="clientes"||clave==="rrhh"?"Elements":"Elements · Operaciones"}</div><h1>${m.titulo}</h1><p>${m.desc}</p></div></div>
+  <div class="header"><div><div class="eyebrow">${m.area==="operaciones"?"Elements · Operaciones":"Elements · "+m.area.toUpperCase()}</div><h1>${m.titulo}</h1><p>${m.desc}</p></div></div>
   <div class="panel"><div class="empty"><div style="font-size:28px;color:var(--gold);margin-bottom:12px">${m.icono}</div><strong style="color:#ddd6c9">Módulo preparado</strong><br><br>La estructura ya forma parte del sistema. Lo desarrollaremos sin tener que reorganizar de nuevo la aplicación.</div></div>`;
 }
 
@@ -1247,6 +1333,331 @@ function mostrarCompras(){
  renderListaTareas(lista,"comprasList");
 }
 
+
+/* =====================================================
+   V09 · CALENDARIO + ATC + OPERACIONES
+===================================================== */
+
+const salasATC = {
+ ...salas,
+ "Terror":["Exorcista","Los 3 Cerditos"],
+ "Granollers":["Bandidos"]
+};
+
+function esAuxiliar(t){
+ return t.origen==="documentacion" || String(t.origen||"").startsWith("atc_");
+}
+
+function activas(){
+ return tareas.filter(t=>!esAuxiliar(t) && t.estado!=="resuelto");
+}
+
+function actualizarBotonContexto(area){
+ const b=document.getElementById("contextAdd");
+ if(!b)return;
+ if(area==="atc"){
+  b.style.display="block"; b.textContent="+ Añadir ATC"; b.onclick=()=>abrirATC();
+ }else if(area==="operaciones"){
+  b.style.display="block"; b.textContent="+ Añadir"; b.onclick=()=>abrirNuevaTarea();
+ }else{
+  b.style.display="none";
+ }
+}
+
+function toggleArea(area){
+ const mapa={operaciones:["areaOperaciones","toggleOperaciones"],atc:["areaATC","toggleATC"],rrhh:["areaRRHH","toggleRRHH"]};
+ const actual=mapa[area];if(!actual)return;
+ const panel=document.getElementById(actual[0]);
+ const abrir=!panel.classList.contains("open");
+ Object.values(mapa).forEach(([panelId,botonId])=>{
+  document.getElementById(panelId)?.classList.remove("open");
+  document.getElementById(botonId)?.classList.remove("open");
+ });
+ if(abrir){panel.classList.add("open");document.getElementById(actual[1])?.classList.add("open");actualizarBotonContexto(area);}
+}
+
+function abrirArea(area){
+ const mapa={operaciones:["areaOperaciones","toggleOperaciones"],atc:["areaATC","toggleATC"],rrhh:["areaRRHH","toggleRRHH"]};
+ const actual=mapa[area];if(!actual)return;
+ Object.values(mapa).forEach(([panelId,botonId])=>{
+  document.getElementById(panelId)?.classList.remove("open");
+  document.getElementById(botonId)?.classList.remove("open");
+ });
+ document.getElementById(actual[0])?.classList.add("open");
+ document.getElementById(actual[1])?.classList.add("open");
+ actualizarBotonContexto(area);
+}
+
+function seleccionarResponsable(tipo){
+ document.getElementById("responsableTipo").value=tipo;
+ document.querySelectorAll("#responsableTabs button").forEach(b=>b.classList.toggle("active",b.dataset.resp===tipo));
+ document.getElementById("socioWrap").style.display=tipo==="socio"?"block":"none";
+ document.getElementById("proveedorNombreWrap").style.display=tipo==="proveedor"?"block":"none";
+}
+
+function responsableDesdeFormulario(){
+ const tipo=document.getElementById("responsableTipo").value;
+ if(tipo==="eudald")return "Eudald";
+ if(tipo==="encargado")return "Encargado";
+ if(tipo==="socio")return document.getElementById("socioNombre").value.trim();
+ if(tipo==="proveedor"){
+  const n=document.getElementById("proveedorNombre").value.trim();
+  return n?`Proveedor: ${n}`:"";
+ }
+ return "";
+}
+
+function cargarResponsableEnFormulario(valor){
+ const v=(valor||"").trim();
+ if(/^Proveedor:\s*/i.test(v)){
+  seleccionarResponsable("proveedor");
+  document.getElementById("proveedorNombre").value=v.replace(/^Proveedor:\s*/i,"");
+ }else if(v==="Eudald")seleccionarResponsable("eudald");
+ else if(v==="Encargado" || !v)seleccionarResponsable("encargado");
+ else if(["Ricardo","Marc Balada","Marc Velasco","Marc Ribes","Edu"].includes(v)){
+  seleccionarResponsable("socio");document.getElementById("socioNombre").value=v;
+ }else{
+  seleccionarResponsable("proveedor");document.getElementById("proveedorNombre").value=v;
+ }
+}
+
+function actualizarFormularioOperaciones(){
+ const doc=document.getElementById("tipo").value==="documentacion";
+ ["prioridadWrap","responsableWrap","fechaWrap","estadoWrap"].forEach(id=>document.getElementById(id).style.display=doc?"none":"block");
+ document.getElementById("bloqueoWrap").style.display=!doc && document.getElementById("estado").value==="bloqueada"?"block":"none";
+ document.getElementById("notasLabel").textContent=doc?"DESCRIPCIÓN / INFORMACIÓN":"NOTAS / DESCRIPCIÓN";
+ document.getElementById("notas").placeholder=doc?"Contraseña, incidencia conocida, procedimiento, solución, referencia técnica...":"Qué ocurre, qué se ha probado, información útil...";
+}
+
+function abrirNuevaTarea(local=null,sala=null,tipoPre=null){
+ abrirArea("operaciones");
+ document.getElementById("formTitle").textContent="Añadir";
+ document.getElementById("editId").value="";
+ limpiarFormulario();
+ if(tipoPre)document.getElementById("tipo").value=tipoPre;
+ if(local){document.getElementById("local").value=local;actualizarSalas();}
+ if(sala)document.getElementById("sala").value=sala;
+ actualizarFormularioOperaciones();
+ document.getElementById("taskModal").style.display="flex";
+}
+
+function limpiarFormulario(){
+ document.getElementById("tipo").value="averia";
+ document.getElementById("prioridad").value="normal";
+ document.getElementById("local").value="";
+ document.getElementById("sala").innerHTML='<option value="">Selecciona primero el local</option>';
+ document.getElementById("titulo").value="";
+ document.getElementById("fecha").value="";
+ document.getElementById("estado").value="pendiente";
+ document.getElementById("bloqueo").value="";
+ document.getElementById("notas").value="";
+ document.getElementById("socioNombre").value="";
+ document.getElementById("proveedorNombre").value="";
+ seleccionarResponsable("encargado");
+ actualizarFormularioOperaciones();
+}
+
+function editarTarea(id){
+ const t=tareas.find(x=>x.id===id);if(!t)return;
+ cerrarModal("detailModal"); abrirArea("operaciones");
+ const esDoc=t.origen==="documentacion";
+ document.getElementById("formTitle").textContent=esDoc?"Editar documentación":"Editar";
+ document.getElementById("editId").value=t.id;
+ document.getElementById("tipo").value=esDoc?"documentacion":t.tipo;
+ document.getElementById("prioridad").value=t.prioridad||"normal";
+ document.getElementById("local").value=t.local;actualizarSalas();
+ document.getElementById("sala").value=t.sala||"";
+ document.getElementById("titulo").value=t.titulo||"";
+ cargarResponsableEnFormulario(t.responsable||"");
+ document.getElementById("fecha").value=t.fecha||"";
+ document.getElementById("estado").value=t.estado||"pendiente";
+ document.getElementById("bloqueo").value=t.bloqueo||"";
+ document.getElementById("notas").value=t.notas||"";
+ actualizarFormularioOperaciones(); mostrarCampoBloqueo();
+ document.getElementById("taskModal").style.display="flex";
+}
+
+function mostrarCampoBloqueo(){
+ const doc=document.getElementById("tipo")?.value==="documentacion";
+ const estado=document.getElementById("estado")?.value;
+ document.getElementById("bloqueoWrap").style.display=!doc && estado==="bloqueada"?"block":"none";
+}
+
+async function guardarTarea(){
+ const titulo=document.getElementById("titulo").value.trim();
+ const local=document.getElementById("local").value;
+ const tipoForm=document.getElementById("tipo").value;
+ const esDoc=tipoForm==="documentacion";
+ if(!titulo){alert("Escribe un título.");return;}
+ if(!local){alert("Selecciona un local.");return;}
+ if(!supabaseConfigurado()){alert("Falta configurar la Publishable Key de Supabase.");return;}
+ const editId=document.getElementById("editId").value;
+ const estado=esDoc?"resuelto":document.getElementById("estado").value;
+ const responsable=esDoc?"":responsableDesdeFormulario();
+ if(!esDoc && document.getElementById("responsableTipo").value==="socio" && !responsable){alert("Selecciona un socio.");return;}
+ if(!esDoc && document.getElementById("responsableTipo").value==="proveedor" && !responsable){alert("Escribe el nombre del proveedor.");return;}
+ const datos={
+  tipo:esDoc?"tarea":tipoForm,
+  prioridad:esDoc?"normal":document.getElementById("prioridad").value,
+  local,sala:document.getElementById("sala").value,titulo,
+  responsable,
+  fecha:esDoc?"":document.getElementById("fecha").value,
+  estado,
+  bloqueo:!esDoc && estado==="bloqueada"?document.getElementById("bloqueo").value:"",
+  notas:document.getElementById("notas").value,
+  origen:esDoc?"documentacion":"mtqq"
+ };
+ let error;
+ if(editId){
+  const anterior=tareas.find(x=>String(x.id)===String(editId));
+  datos.resuelta=esDoc?(anterior?.resuelta||new Date().toISOString()):(estado==="resuelto"?(anterior?.resuelta||new Date().toISOString()):null);
+  ({error}=await supabaseMTQQ.from("tareas").update(haciaSupabase(datos)).eq("id",Number(editId)));
+ }else{
+  datos.resuelta=esDoc?new Date().toISOString():(estado==="resuelto"?new Date().toISOString():null);
+  ({error}=await supabaseMTQQ.from("tareas").insert(haciaSupabase(datos)));
+ }
+ if(error){console.error(error);alert("No se ha podido guardar en Supabase.");return;}
+ cerrarModal("taskModal");await cargarTareasSupabase();
+}
+
+function mostrarOperaciones(){
+ abrirArea("operaciones");vistaActual="operaciones";localActual=null;salaActual=null;actualizarMenuActivo("menuOperaciones");
+ document.getElementById("mainContent").innerHTML=`
+  <div class="header"><div><div class="eyebrow">Elements · Operaciones</div><h1>Tareas de mantenimiento</h1><p>Averías, revisiones y tareas operativas de los encargados</p></div><button class="btn btn-primary" onclick="abrirNuevaTarea()">+ Añadir</button></div>
+  <div class="panel"><div class="filters">
+   <input id="fBuscar" placeholder="Buscar..." oninput="aplicarFiltros()">
+   <select id="fLocal" onchange="aplicarFiltros()"><option value="">Todos los locales</option><option>Terrassa</option><option>Sabadell</option><option>Barcelona</option><option>Esplugues</option></select>
+   <select id="fTipo" onchange="aplicarFiltros()"><option value="">Todos los tipos</option><option value="averia">Averías</option><option value="revisar">Revisar</option><option value="tarea">Tareas</option></select>
+   <select id="fPrioridad" onchange="aplicarFiltros()"><option value="">Toda prioridad</option><option value="urgente">Urgente</option><option value="importante">Importante</option><option value="normal">Normal</option></select>
+   <select id="fEstado" onchange="aplicarFiltros()"><option value="">Todo estado</option><option value="pendiente">Pendiente</option><option value="proceso">En proceso</option><option value="bloqueada">Bloqueada</option></select>
+   <select id="fPlazo" onchange="aplicarFiltros()"><option value="">Cualquier fecha</option><option value="vencida">Fecha pasada</option></select>
+  </div><div id="operationsList"></div></div>`;
+ aplicarFiltros();
+}
+
+function aplicarFiltros(){
+ let lista=activas().filter(t=>["averia","revisar","tarea"].includes(t.tipo));
+ const buscar=(document.getElementById("fBuscar")?.value||"").toLowerCase();
+ const local=document.getElementById("fLocal")?.value||"";
+ const tipo=document.getElementById("fTipo")?.value||"";
+ const prioridad=document.getElementById("fPrioridad")?.value||"";
+ const estado=document.getElementById("fEstado")?.value||"";
+ const plazo=document.getElementById("fPlazo")?.value||"";
+ if(buscar)lista=lista.filter(t=>`${t.titulo} ${t.notas} ${t.sala} ${t.responsable}`.toLowerCase().includes(buscar));
+ if(local)lista=lista.filter(t=>t.local===local);if(tipo)lista=lista.filter(t=>t.tipo===tipo);if(prioridad)lista=lista.filter(t=>t.prioridad===prioridad);if(estado)lista=lista.filter(t=>t.estado===estado);if(plazo==="vencida")lista=lista.filter(estaVencida);
+ renderListaTareas(lista,"operationsList");
+}
+
+function mostrarCompras(){
+ abrirArea("operaciones");vistaActual="compras";localActual=null;salaActual=null;actualizarMenuActivo("menuCompras");
+ const lista=activas().filter(t=>t.tipo==="compra");
+ document.getElementById("mainContent").innerHTML=`<div class="header"><div><div class="eyebrow">Elements · Operaciones</div><h1>Compras</h1><p>Necesidades de compra registradas actualmente</p></div><button class="btn btn-primary" onclick="abrirNuevaTarea(null,null,'compra')">+ Añadir compra</button></div><div class="cards"><div class="card"><div class="number">${lista.length}</div><div class="label">Compras pendientes</div></div><div class="card"><div class="number">${lista.filter(t=>t.prioridad==="urgente").length}</div><div class="label">Urgentes</div></div><div class="card"><div class="number">${lista.filter(estaVencida).length}</div><div class="label">Fuera de plazo</div></div><div class="card"><div class="number">${lista.filter(t=>t.estado==="bloqueada").length}</div><div class="label">Bloqueadas</div></div></div><div class="panel"><div class="panel-header"><h2>Pendientes de compra</h2></div><div id="comprasList"></div></div>`;
+ renderListaTareas(lista,"comprasList");
+}
+
+function mostrarProyectos(){
+ abrirArea("operaciones");vistaActual="proyectos";localActual=null;salaActual=null;actualizarMenuActivo("menuProyectos");
+ const lista=activas().filter(t=>t.tipo==="mejora");
+ document.getElementById("mainContent").innerHTML=`<div class="header"><div><div class="eyebrow">Elements · Operaciones</div><h1>Proyectos / mejoras</h1><p>Mejoras y cambios que queremos implementar en locales y salas</p></div><button class="btn btn-primary" onclick="abrirNuevaTarea(null,null,'mejora')">+ Añadir mejora</button></div><div class="cards"><div class="card"><div class="number">${lista.length}</div><div class="label">Mejoras activas</div></div><div class="card"><div class="number">${lista.filter(t=>t.estado==="proceso").length}</div><div class="label">En proceso</div></div><div class="card"><div class="number">${lista.filter(t=>t.estado==="bloqueada").length}</div><div class="label">Bloqueadas</div></div></div><div class="panel"><div id="proyectosList"></div></div>`;
+ renderListaTareas(lista,"proyectosList");
+}
+
+function mostrarProveedores(){
+ abrirArea("operaciones");vistaActual="proveedores";localActual=null;salaActual=null;actualizarMenuActivo("menuProveedores");
+ const lista=activas().filter(t=>/^Proveedor:\s*/i.test(t.responsable||""));
+ const nombres=[...new Set(lista.map(t=>(t.responsable||"").replace(/^Proveedor:\s*/i,"")).filter(Boolean))].sort();
+ document.getElementById("mainContent").innerHTML=`<div class="header"><div><div class="eyebrow">Elements · Operaciones</div><h1>Proveedores</h1><p>Tareas pendientes asignadas a proveedores externos</p></div><button class="btn btn-primary" onclick="abrirNuevaTarea()">+ Añadir</button></div><div class="cards"><div class="card"><div class="number">${lista.length}</div><div class="label">Pendientes</div></div><div class="card"><div class="number">${nombres.length}</div><div class="label">Proveedores activos</div></div><div class="card"><div class="number">${lista.filter(t=>t.estado==="proceso").length}</div><div class="label">En proceso</div></div><div class="card"><div class="number">${lista.filter(t=>t.estado==="bloqueada").length}</div><div class="label">Bloqueadas</div></div></div>${nombres.length?nombres.map((n,i)=>`<div class="panel"><div class="panel-header"><h2>${escaparHTML(n)}</h2></div><div id="prov_${i}"></div></div>`).join(""):'<div class="panel"><div class="empty">No hay tareas pendientes asignadas a proveedores.</div></div>'}`;
+ nombres.forEach((n,i)=>renderListaTareas(lista.filter(t=>(t.responsable||"").replace(/^Proveedor:\s*/i,"")===n),`prov_${i}`));
+}
+
+function mostrarDocumentacion(){
+ abrirArea("operaciones");vistaActual="documentacion";localActual=null;salaActual=null;actualizarMenuActivo("menuDocumentacion");
+ document.getElementById("mainContent").innerHTML=`<div class="header"><div><div class="eyebrow">Elements · Operaciones</div><h1>Documentación técnica</h1><p>Información permanente, contraseñas, incidencias conocidas y soluciones por sala.</p></div><button class="btn btn-primary" onclick="abrirNuevaTarea(null,null,'documentacion')">+ Añadir documentación</button></div>${tarjetasSalasModulo('abrirFichaDocumentacion')}`;
+}
+
+function abrirFichaDocumentacion(local,sala){
+ const docs=tareas.filter(t=>t.origen==="documentacion"&&t.local===local&&t.sala===sala);
+ document.getElementById("mainContent").innerHTML=`<div class="header"><div><div class="eyebrow">Documentación · ${escaparHTML(local)}</div><h1>${escaparHTML(sala)}</h1><p>Información técnica permanente de esta sala</p></div><div class="header-actions"><button class="btn" onclick="mostrarDocumentacion()">← Volver</button><button class="btn btn-primary" onclick="abrirNuevaTarea('${local}','${String(sala).replaceAll("'","\\'")}','documentacion')">+ Añadir</button></div></div><div class="panel"><div id="docList"></div></div>`;
+ const c=document.getElementById("docList");
+ if(!docs.length){c.innerHTML='<div class="empty">Todavía no hay documentación guardada para esta sala.</div>';return;}
+ c.innerHTML=docs.map(d=>`<div class="record-card" onclick="editarTarea(${d.id})" style="cursor:pointer"><div class="record-head"><div class="record-title">${escaparHTML(d.titulo)}</div><span class="pill">EDITAR</span></div><div class="record-body">${escaparHTML(d.notas||"Sin descripción")}</div></div>`).join("");
+}
+
+/* ---------- ATC ---------- */
+function atcRegistros(tipo=null){
+ const l=tareas.filter(t=>t.origen==="atc" || String(t.origen||"").startsWith("atc_"));
+ if(!tipo)return l;
+ return l.filter(t=>{
+  if(String(t.origen||"").startsWith("atc_")) return t.origen===`atc_${tipo}`;
+  return parseATC(t).tipoRegistro===tipo;
+ });
+}
+function parseATC(t){try{return JSON.parse(t.notas||"{}")}catch(e){return {texto:t.notas||""}}}
+function atcLocalOptions(sel=""){return Object.keys(salasATC).map(l=>`<option ${l===sel?"selected":""}>${l}</option>`).join("")}
+function atcSalaOptions(local,sel=""){return (salasATC[local]||[]).map(x=>`<option ${x===sel?"selected":""}>${x}</option>`).join("")}
+function actualizarSalasATC(){const l=document.getElementById("atcLocal")?.value;const s=document.getElementById("atcSala");if(s)s.innerHTML=atcSalaOptions(l);}
+
+function abrirATC(tipo="ultima_hora"){
+ abrirArea("atc");document.getElementById("atcEditId").value="";document.getElementById("atcTipo").value=tipo;document.getElementById("atcTipo").disabled=false;document.getElementById("atcFormTitle").textContent="Añadir en ATC";renderATCForm();document.getElementById("atcModal").style.display="flex";
+}
+
+function renderATCForm(data={}){
+ const tipo=document.getElementById("atcTipo").value;const d=data||{};
+ let html="";
+ if(tipo==="ultima_hora")html=`<div class="form-grid"><div><label>LOCAL</label><select id="atcLocal" onchange="actualizarSalasATC()">${atcLocalOptions(d.local||"Barcelona")}</select></div><div><label>SALA</label><select id="atcSala"></select></div><div><label>GM</label><input id="atcGM" value="${escaparHTML(d.gm||"")}" placeholder="Nombre del GM"></div><div><label>ESTADO</label><select id="atcEstado"><option value="confirmada" ${d.estado==="confirmada"?"selected":""}>Sesión confirmada</option><option value="perdida" ${d.estado==="perdida"?"selected":""}>Sesión perdida</option></select></div><div><label>FECHA</label><input id="atcFecha" type="date" value="${escaparHTML(d.fecha||hoyISO())}"></div></div>`;
+ else if(tipo==="cancelada_aplazada")html=`<div class="form-grid"><div><label>TIPO</label><select id="atcMovimiento"><option value="cancelada" ${d.movimiento==="cancelada"?"selected":""}>Sesión cancelada</option><option value="aplazada" ${d.movimiento==="aplazada"?"selected":""}>Sesión aplazada</option></select></div><div><label>FECHA DE LA SESIÓN</label><input id="atcFecha" type="date" value="${escaparHTML(d.fecha||hoyISO())}"></div><div><label>LOCAL</label><select id="atcLocal" onchange="actualizarSalasATC()">${atcLocalOptions(d.local||"Barcelona")}</select></div><div><label>SALA</label><select id="atcSala"></select></div><div class="form-full"><label>GESTIÓN REALIZADA</label><select id="atcGestion"><option value="ninguna">Ninguna / pendiente</option><option value="devolucion_pys" ${d.gestion==="devolucion_pys"?"selected":""}>Devolución PYS</option><option value="bono" ${d.gestion==="bono"?"selected":""}>Bono regalo creado</option><option value="suplemento" ${d.gestion==="suplemento"?"selected":""}>Suplemento cambio</option></select></div><div class="form-full"><label>MOTIVO</label><textarea id="atcMotivo" placeholder="Motivo y detalles de lo ocurrido">${escaparHTML(d.motivo||"")}</textarea></div></div>`;
+ else if(tipo==="conversacion")html=`<div class="form-grid"><div><label>TELÉFONO</label><input id="atcTelefono" value="${escaparHTML(d.telefono||"")}" placeholder="6XX XXX XXX"></div><div><label>ESTADO</label><select id="atcEstado"><option value="abierta" ${d.estado==="abierta"?"selected":""}>Conversación abierta</option><option value="esperando_cliente" ${d.estado==="esperando_cliente"?"selected":""}>Esperando cliente</option><option value="esperando_interna" ${d.estado==="esperando_interna"?"selected":""}>Esperando respuesta interna</option><option value="reserva" ${d.estado==="reserva"?"selected":""}>Reserva conseguida</option><option value="no_reserva" ${d.estado==="no_reserva"?"selected":""}>No reserva</option></select></div><div><label>LOCAL (si se sabe)</label><select id="atcLocal" onchange="actualizarSalasATC()"><option value="">Sin definir</option>${atcLocalOptions(d.local||"")}</select></div><div><label>SALA (si se sabe)</label><select id="atcSala"><option value="">Sin definir</option></select></div><div class="form-full"><label>RESUMEN / POR DÓNDE VA LA CONVERSACIÓN</label><textarea id="atcResumen">${escaparHTML(d.resumen||"")}</textarea></div><div class="form-full"><label>DUDA / PREGUNTA PARA SUPERIORES</label><textarea id="atcDuda" placeholder="Déjalo vacío si no hay ninguna duda">${escaparHTML(d.duda||"")}</textarea></div></div>`;
+ else html=`<div class="form-grid"><div><label>FECHA</label><input id="atcFecha" type="date" value="${escaparHTML(d.fecha||hoyISO())}"></div><div><label>LOCAL</label><select id="atcLocal" onchange="actualizarSalasATC()">${atcLocalOptions(d.local||"Barcelona")}</select></div><div><label>SALA</label><select id="atcSala"></select></div><div><label>COMPENSACIÓN</label><select id="atcCompensacion"><option value="ninguna">Ninguna</option><option value="descuento" ${d.compensacion==="descuento"?"selected":""}>Descuento</option><option value="devolucion" ${d.compensacion==="devolucion"?"selected":""}>Devolución</option><option value="bono" ${d.compensacion==="bono"?"selected":""}>Bono</option><option value="sesion_gratis" ${d.compensacion==="sesion_gratis"?"selected":""}>Sesión gratuita</option><option value="otro" ${d.compensacion==="otro"?"selected":""}>Otro</option></select></div><div class="form-full"><label>QUÉ HA PASADO</label><textarea id="atcQuePaso">${escaparHTML(d.quePaso||"")}</textarea></div><div class="form-full"><label>CÓMO SE HA SOLUCIONADO</label><textarea id="atcSolucion">${escaparHTML(d.solucion||"")}</textarea></div><div class="form-full"><label>DETALLE DE COMPENSACIÓN / RESULTADO</label><textarea id="atcDetalle">${escaparHTML(d.detalle||"")}</textarea></div></div>`;
+ document.getElementById("atcDynamicForm").innerHTML=html;
+ const l=document.getElementById("atcLocal")?.value;if(document.getElementById("atcSala")){
+  const desired=d.sala||"";let opts=(l?atcSalaOptions(l,desired):"");if(tipo==="conversacion")opts='<option value="">Sin definir</option>'+opts;document.getElementById("atcSala").innerHTML=opts;
+ }
+}
+
+async function guardarATC(){
+ if(!supabaseConfigurado()){alert("Falta configurar la conexión con Supabase.");return;}
+ const tipo=document.getElementById("atcTipo").value;const editId=document.getElementById("atcEditId").value;
+ let d={},titulo="",local=document.getElementById("atcLocal")?.value||"",sala=document.getElementById("atcSala")?.value||"",estadoDB="resuelto",fecha="";
+ if(tipo==="ultima_hora"){
+  d={local,sala,gm:document.getElementById("atcGM").value.trim(),estado:document.getElementById("atcEstado").value,fecha:document.getElementById("atcFecha").value};fecha=d.fecha;titulo=`Última hora · ${sala||local} · ${d.estado==="confirmada"?"Confirmada":"Perdida"}`;
+ }else if(tipo==="cancelada_aplazada"){
+  d={movimiento:document.getElementById("atcMovimiento").value,local,sala,fecha:document.getElementById("atcFecha").value,gestion:document.getElementById("atcGestion").value,motivo:document.getElementById("atcMotivo").value.trim()};fecha=d.fecha;titulo=`Sesión ${d.movimiento} · ${sala||local}`;
+ }else if(tipo==="conversacion"){
+  d={telefono:document.getElementById("atcTelefono").value.trim(),estado:document.getElementById("atcEstado").value,local,sala,resumen:document.getElementById("atcResumen").value.trim(),duda:document.getElementById("atcDuda").value.trim()};titulo=`Conversación · ${d.telefono||"Sin teléfono"}`;estadoDB=["reserva","no_reserva"].includes(d.estado)?"resuelto":"pendiente";
+ }else{
+  d={fecha:document.getElementById("atcFecha").value,local,sala,compensacion:document.getElementById("atcCompensacion").value,quePaso:document.getElementById("atcQuePaso").value.trim(),solucion:document.getElementById("atcSolucion").value.trim(),detalle:document.getElementById("atcDetalle").value.trim()};fecha=d.fecha;titulo=`Situación extraordinaria · ${sala||local}`;
+ }
+ if(!local && tipo!=="conversacion"){alert("Selecciona un local.");return;}
+ if(tipo==="conversacion" && !d.telefono){alert("Escribe el teléfono del cliente.");return;}
+ d.tipoRegistro=tipo;
+ const fila={tipo:"tarea",prioridad:"normal",local:local||"",sala,titulo,responsable:"ATC",fecha,estado:estadoDB,bloqueo:"",notas:JSON.stringify(d),origen:"atc",resuelta:estadoDB==="resuelto"?new Date().toISOString():null};
+ let error;if(editId)({error}=await supabaseMTQQ.from("tareas").update(haciaSupabase(fila)).eq("id",Number(editId)));else({error}=await supabaseMTQQ.from("tareas").insert(haciaSupabase(fila)));
+ if(error){console.error("Error ATC:",error);alert("No se ha podido guardar el registro de ATC. " + (error.message||""));return;}
+ cerrarModal("atcModal");await cargarTareasSupabase();
+}
+
+function editarATC(id){
+ const t=tareas.find(x=>x.id===id);if(!t)return;const datos=parseATC(t);const tipo=String(t.origen||"").startsWith("atc_")?String(t.origen).replace(/^atc_/,""):(datos.tipoRegistro||"ultima_hora");
+ abrirArea("atc");document.getElementById("atcEditId").value=t.id;document.getElementById("atcTipo").value=tipo;document.getElementById("atcTipo").disabled=true;document.getElementById("atcFormTitle").textContent="Editar registro ATC";renderATCForm(parseATC(t));document.getElementById("atcModal").style.display="flex";
+}
+
+function mostrarATCPanel(){
+ abrirArea("atc");vistaActual="atcPanel";actualizarMenuActivo("menuClientes");
+ const conv=atcRegistros("conversacion").filter(t=>t.estado!=="resuelto");const dudas=conv.filter(t=>(parseATC(t).duda||"").trim());const ult=atcRegistros("ultima_hora");const perd=ult.filter(t=>parseATC(t).estado==="perdida");
+ document.getElementById("mainContent").innerHTML=`<div class="header"><div><div class="eyebrow">Elements · ATC</div><h1>Panel ATC</h1><p>Lo que Atención al Cliente necesita tener controlado</p></div><button class="btn btn-primary" onclick="abrirATC()">+ Añadir ATC</button></div><div class="cards"><div class="card clickable" onclick="mostrarATCConversaciones()"><div class="number">${conv.length}</div><div class="label">Conversaciones abiertas</div></div><div class="card"><div class="number">${dudas.length}</div><div class="label">Dudas para superiores</div></div><div class="card clickable" onclick="mostrarATCUltimaHora()"><div class="number">${ult.length}</div><div class="label">Últimas horas registradas</div></div><div class="card"><div class="number">${perd.length}</div><div class="label">Sesiones perdidas</div></div></div><div class="panel"><div class="panel-header"><h2>Conversaciones que siguen abiertas</h2></div><div id="atcPanelOpen"></div></div>`;
+ renderATCConversacionesLista(conv,"atcPanelOpen");
+}
+
+function renderATCConversacionesLista(lista,id){const c=document.getElementById(id);if(!c)return;if(!lista.length){c.innerHTML='<div class="empty">No hay conversaciones abiertas.</div>';return;}c.innerHTML=lista.map(t=>{const d=parseATC(t);return `<div class="record-card" onclick="editarATC(${t.id})" style="cursor:pointer"><div class="record-head"><div><div class="record-title">${escaparHTML(d.telefono||"Sin teléfono")}</div><div class="record-meta">${escaparHTML(d.local||"Sin local")}${d.sala?" · "+escaparHTML(d.sala):""} · ${escaparHTML((d.estado||"abierta").replaceAll("_"," "))}</div></div>${d.duda?'<span class="pill wait">DUDA SUPERIOR</span>':''}</div><div class="record-body">${escaparHTML(d.resumen||"Sin resumen")}${d.duda?`\n\nDuda: ${escaparHTML(d.duda)}`:""}</div></div>`}).join("")}
+
+function mostrarATCUltimaHora(){abrirArea("atc");vistaActual="atcUltimaHora";actualizarMenuActivo("menuATCUltimaHora");const lista=atcRegistros("ultima_hora").slice().reverse();document.getElementById("mainContent").innerHTML=`<div class="header"><div><div class="eyebrow">Elements · ATC</div><h1>Sesiones de última hora</h1><p>Control de sesiones que aparecen con poca antelación</p></div><button class="btn btn-primary" onclick="abrirATC('ultima_hora')">+ Añadir</button></div><div class="cards"><div class="card"><div class="number">${lista.length}</div><div class="label">Registradas</div></div><div class="card"><div class="number">${lista.filter(t=>parseATC(t).estado==="confirmada").length}</div><div class="label">Confirmadas</div></div><div class="card"><div class="number">${lista.filter(t=>parseATC(t).estado==="perdida").length}</div><div class="label">Perdidas</div></div></div><div class="panel"><div id="atcUHList"></div></div>`;const c=document.getElementById("atcUHList");c.innerHTML=lista.length?lista.map(t=>{const d=parseATC(t);return `<div class="record-card" onclick="editarATC(${t.id})" style="cursor:pointer"><div class="record-head"><div class="record-title">${escaparHTML(d.local)} · ${escaparHTML(d.sala)}</div><span class="pill ${d.estado==="confirmada"?"ok":"bad"}">${d.estado==="confirmada"?"CONFIRMADA":"PERDIDA"}</span></div><div class="record-meta">${formatearFecha(d.fecha)} · GM: ${escaparHTML(d.gm||"Sin asignar")}</div></div>`}).join(""):'<div class="empty">No hay sesiones de última hora registradas.</div>'}
+
+function mostrarATCCanceladas(){abrirArea("atc");vistaActual="atcCanceladas";actualizarMenuActivo("menuATCCanceladas");const lista=atcRegistros("cancelada_aplazada").slice().reverse();document.getElementById("mainContent").innerHTML=`<div class="header"><div><div class="eyebrow">Elements · ATC</div><h1>Canceladas / aplazadas</h1><p>Registro del motivo y de la gestión realizada</p></div><button class="btn btn-primary" onclick="abrirATC('cancelada_aplazada')">+ Añadir</button></div><div class="panel"><div id="atcCAList"></div></div>`;const c=document.getElementById("atcCAList");c.innerHTML=lista.length?lista.map(t=>{const d=parseATC(t);const g={ninguna:"Ninguna / pendiente",devolucion_pys:"Devolución PYS",bono:"Bono regalo",suplemento:"Suplemento cambio"}[d.gestion]||d.gestion;return `<div class="record-card" onclick="editarATC(${t.id})" style="cursor:pointer"><div class="record-head"><div class="record-title">Sesión ${escaparHTML(d.movimiento||"")} · ${escaparHTML(d.local)} · ${escaparHTML(d.sala)}</div><span class="pill">${escaparHTML(g||"")}</span></div><div class="record-meta">${formatearFecha(d.fecha)}</div><div class="record-body">${escaparHTML(d.motivo||"Sin motivo indicado")}</div></div>`}).join(""):'<div class="empty">No hay sesiones canceladas o aplazadas registradas.</div>'}
+
+function mostrarATCConversaciones(){abrirArea("atc");vistaActual="atcConversaciones";actualizarMenuActivo("menuATCConversaciones");const lista=atcRegistros("conversacion").slice().reverse();document.getElementById("mainContent").innerHTML=`<div class="header"><div><div class="eyebrow">Elements · ATC</div><h1>Conversaciones / futuribles reservas</h1><p>Continuar conversaciones sin perder contexto entre personas</p></div><button class="btn btn-primary" onclick="abrirATC('conversacion')">+ Añadir</button></div><div class="panel"><div id="atcConvList"></div></div>`;renderATCConversacionesLista(lista,"atcConvList")}
+
+function mostrarATCExtraordinarias(){abrirArea("atc");vistaActual="atcExtraordinarias";actualizarMenuActivo("menuATCExtraordinarias");const lista=atcRegistros("extraordinaria").slice().reverse();document.getElementById("mainContent").innerHTML=`<div class="header"><div><div class="eyebrow">Elements · ATC</div><h1>Situaciones extraordinarias</h1><p>Qué ha pasado, cómo se resolvió y qué precedente dejamos</p></div><button class="btn btn-primary" onclick="abrirATC('extraordinaria')">+ Añadir</button></div><div class="panel"><div id="atcExList"></div></div>`;const c=document.getElementById("atcExList");c.innerHTML=lista.length?lista.map(t=>{const d=parseATC(t);return `<div class="record-card" onclick="editarATC(${t.id})" style="cursor:pointer"><div class="record-head"><div class="record-title">${escaparHTML(d.local)} · ${escaparHTML(d.sala)}</div><span class="pill">${escaparHTML((d.compensacion||"ninguna").replaceAll("_"," "))}</span></div><div class="record-meta">${formatearFecha(d.fecha)}</div><div class="record-body"><strong>Qué pasó:</strong> ${escaparHTML(d.quePaso||"—")}\n\n<strong>Solución:</strong> ${escaparHTML(d.solucion||"—")}\n\n<strong>Resultado:</strong> ${escaparHTML(d.detalle||"—")}</div></div>`}).join(""):'<div class="empty">No hay situaciones extraordinarias registradas.</div>'}
+
 /* =====================================================
    RENDER SEGÚN VISTA
 ===================================================== */
@@ -1254,18 +1665,28 @@ function mostrarCompras(){
 function renderVistaActual(){
  if(vistaActual==="operaciones")mostrarOperaciones();
  else if(vistaActual==="compras")mostrarCompras();
+ else if(vistaActual==="proyectos")mostrarProyectos();
+ else if(vistaActual==="atcPanel")mostrarATCPanel();
+ else if(vistaActual==="atcUltimaHora")mostrarATCUltimaHora();
+ else if(vistaActual==="atcCanceladas")mostrarATCCanceladas();
+ else if(vistaActual==="atcConversaciones")mostrarATCConversaciones();
+ else if(vistaActual==="atcExtraordinarias")mostrarATCExtraordinarias();
  else if(vistaActual.startsWith("modulo:"))mostrarModulo(vistaActual.split(":")[1]);
  else if(vistaActual==="local" && localActual)mostrarLocal(localActual);
  else if(vistaActual==="sala" && localActual && salaActual)mostrarSala(localActual,salaActual);
  else if(vistaActual==="misTareas")mostrarMisTareas();
  else if(vistaActual==="historial")mostrarHistorial();
- else if(vistaActual==="proyectos")mostrarProyectos();
+ else if(vistaActual==="stock")mostrarStock();
+ else if(vistaActual==="proveedores")mostrarProveedores();
+ else if(vistaActual==="encargados")mostrarEncargados();
+ else if(vistaActual==="calendario")mostrarCalendario();
+ else if(vistaActual==="documentacion")mostrarDocumentacion();
  else mostrarDashboard();
 }
 
 /* CERRAR MODALES CLICANDO FUERA */
 window.addEventListener("click",e=>{
- ["taskModal","detailModal"].forEach(id=>{
+ ["taskModal","detailModal","atcModal"].forEach(id=>{
   const modal=document.getElementById(id);
   if(e.target===modal)cerrarModal(id);
  });
